@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Übersicht</title>
+    <meta name="author" content="Vincent Wehr, Federica Faßbender">
+    <meta name="keywords" content="Hausarbeit, Praktikum">
+    <meta charset="UTF-8"/>
+
+    <!-- Bootstrap, scale for mobile first -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap source -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+          crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <h1><b>Übersicht</b></h1>
+    </header>
+
+    <nav>
+        <a href="Übersicht.html">Übersicht</a>
+        <a href="NewTODO.html">Neues TODO</a>
+        <a href="Impressum.html">Impressum</a>
+    </nav>
+
+    <h3>TODO Liste</h3>
+
+    <div class="container">
+      <div class="row">
+        <table id="mainTable" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Titel</th>
+              <th scope="col">Deadline</th>
+              <th scope="col">Fortschritt</th>
+              <th scope="col">Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--databased--><!--
+            <div class="todos">
+              {$ for elem in todos $}
+                <div class="elem">
+                  <tr>
+                    <td>{{elem.title}}</td>
+                    <td>{{elem.Deadline}}</td>
+                    <td>{{elem.percent}}%</td>
+                    <td>
+                      <button type="submit" class="edit">&#x270E</button>
+                      <button type="button" class="close" onclick="delRow()">&#215</button>
+                    </td>
+                  </tr>
+                </div>
+              {$ endfor $}
+            </div>
+            -->
+            <!--without database -->
+            <tr>
+              <td>Badezimmer schrubben</td>
+              <td>24.Mai 2022</td>
+              <td>99%</td>
+              <td>
+                <button type="submit" class="edit">&#x270E</button>
+                <button type="button" class="close" onclick="delRow()">&#215</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Fenster putzen</td>
+              <td>24.Mai 2022</td>
+              <td>100%</td>
+              <td>
+                <button type="submit" class="edit">&#x270E</button>
+                <button type="button" class="close" onclick="delRow()">&#215</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Staubsaugen</td>
+              <td>25.Mai 2022</td>
+              <td>100%</td>
+              <td>
+                <button type="submit" class="edit">&#x270E</button>
+                <button type="button" class="close" onclick="delRow()">&#215</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Blumen gießen</td>
+              <td>25.Mai 2022</td>
+              <td>0%</td>
+              <td>
+                <button type="submit" class="edit">&#x270E</button>
+                <button type="button" class="close" onclick="delRow()">&#215</button>
+              </td>
+            </tr> 
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <form action="EditTODO.html">
+      <input type="submit" value="Don't mind me!" />
+  </form>
+</body>
+
+<!-- used guide for TODO-Lists:
+    https://www.w3schools.com/howto/howto_js_todolist.asp //-->
+
+<!-- Javascript -->
+<script>
+//completely remove the tablerow 
+function delRow() {
+    if(confirm("Löschen?")){
+      var row = event.target.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+}
+
+</script>
+
+<!-- CSS -->
+<style>
+h1 {
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+  background-color: rgb(207, 87, 87);
+}
+nav {
+  padding: 5px;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  background-color: lightgrey;
+  color: black;
+}
+a {
+  color:darkslategrey;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+h3 {
+  margin: 25px 25px;
+  padding: 10px;
+  background-color: lightgreen;
+  text-align: center;
+}
+td {
+  position: relative;
+  padding: 30px;
+  font-size: 25px;
+}
+th {
+  font-size: 25px;
+}
+.edit {
+  padding: 4px;
+}
+.close {
+  padding: 4px 16px;
+  background-color: lightsalmon;
+}
+.close:hover {
+  background-color: #f44336;
+}
+</style>
+  
+
+<!-- Bootstrap functionality -->
+<script 
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+	crossorigin="anonymous">
+</script>
+
+</html>
