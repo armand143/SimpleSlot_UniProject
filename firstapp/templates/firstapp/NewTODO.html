@@ -19,12 +19,16 @@
         <h1><b>Neues TODO</b></h1>
     </header>
     <nav>
-        <a href="Übersicht.html">Übersicht</a>
-        <a href="NewTODO.html">Neues TODO</a>
-        <a href="Impressum.html">Impressum</a>
+      <a href="{% url 'Übersicht' %}">Übersicht</a>
+      <a href="{% url 'New' %}">Neues TODO</a>
+      <a href="{% url 'Impressum' %}">Impressum</a>
     </nav>
+    <!-- 
     <form id="inputs" action="">
       <input type="text" id="titleInput" placeholder="Neuer Eintrag..." />
+      {{form.title}}
+      {{form.deadline}}
+      {{form.percent}}
       <input type="date" id="deadlineInput" />
       <input type="number" id="percentInput" min="0" max="100" Placeholder = "%"/>
     </form>
@@ -32,6 +36,21 @@
     <div class="text-center">
       <button type="submit" onclick="newElement()" id="addToMain" class="btn btn-primary">TODO zur Hauptseite hinzufügen</button>
     </div>
+    -->
+   {%if submit%}
+      Erstellt
+   {%else%}
+   <form action= "" method=POST>
+    {%csrf_token%}
+    {{form.as_p }}
+    
+    <input type = "submit" value="Create" 
+    class ="btn btn-success"
+  </form>
+   {% endif %}
+    
+    
+   
 </body>
 
 <!-- Javascript -->
