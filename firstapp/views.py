@@ -21,16 +21,15 @@ def edit(request, todo_id):
     return render(request, 'firstapp/EditTODO.html', {'todo.title' : elem.title}, {'todo.deadline' : elem.deadline}, {'todo.percent' : elem.percent})
 
 def new(request):
-    submitted = False
-    if request.method =="POST":
+    form = TodoForm
+    if request.method== 'POST' :
+        print(request.POST)
         form = TodoForm(request.POST)
-        form.save()
-        return HttpResponseRedirect('/New submitted=True')
-    else:
-      form = TodoForm()
-      if 'submitted' in request.GET:
-          submitted = True
-    return render(request, 'firstapp/NewTODO.html', {'form' : form, 'submitted' : submitted})
+        if form.is_valid():
+            form.save()
+            
+    context = {'form' : form}
+    return render(request, 'firstapp/NewTODO.html', context)
 
 def impressum(request):
     return render(request, 'firstapp/Impressum.html')
