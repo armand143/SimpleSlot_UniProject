@@ -48,77 +48,20 @@
             
               <tr>
                 <td>{{todo.title}}</td>
-                <td>{{todo.deadline}}</td>
-                <td>{{todo.percent}}</td>
+                <td>{{todo.deadline.date}}</td>
+                <td>{{todo.percent}}%</td>
                 <td>
-                  <a class="btn btn-primary" href="{% url 'edit' todo.id %}" role="button">Edit</a>
-                  <a class="btn btn-primary" href="{% url 'delete' todo.id %}" role="button">Delete</a>
+                  <a class="btn btn-primary" href="{% url 'edit' todo.id %}" role="button">&#x270E</a>
+                  <a class="btn close" href="{% url 'delete' todo.id %}" role="button">&#215</a>
                 </td>
               </tr> 
             {% endfor %}
             </div>
-            <!--without database -->
-             <!--
-            <tr>
-              <td>Badezimmer schrubben</td>
-              <td>24.Mai 2022</td>
-              <td>99%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Fenster putzen</td>
-              <td>24.Mai 2022</td>
-              <td>100%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Staubsaugen</td>
-              <td>25.Mai 2022</td>
-              <td>100%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Blumen gießen</td>
-              <td>25.Mai 2022</td>
-              <td>0%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr> 
-          -->
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <form action="EditTODO.html">
-      <input type="submit" value="Don't mind me!" />
-  </form>
-</div>
+  </div>
 </body>
-
-<!-- used guide for TODO-Lists:
-    https://www.w3schools.com/howto/howto_js_todolist.asp //-->
 
 <!-- Javascript -->
 <script>
-//completely remove the tablerow 
-function delRow() {
-    if(confirm("Löschen?")){
-      var row = event.target.parentNode.parentNode;
-      row.parentNode.removeChild(row);
-    }
-}
 
 </script>
 
@@ -161,7 +104,7 @@ th {
   padding: 4px;
 }
 .close {
-  padding: 4px 16px;
+  padding: 6px 16px;
   background-color: lightsalmon;
 }
 .close:hover {

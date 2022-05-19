@@ -24,10 +24,11 @@
   <a href="{% url 'Impressum' %}">Impressum</a>
 </nav>
 
-<form action ="" method=POST 
-{%csrf_token%}
-{{form.as_p}}
-<input type = "submit">
+<form action ="" method=POST>
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type = "submit">
+</form> 
 
 
 
