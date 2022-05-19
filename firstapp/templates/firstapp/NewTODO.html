@@ -23,24 +23,19 @@
       <a href="{% url 'New' %}">Neues TODO</a>
       <a href="{% url 'Impressum' %}">Impressum</a>
     </nav>
-    <form id="inputs" action="">
-      <input type="text" id="titleInput" placeholder="Neuer Eintrag..." />
-      <input type="date" id="deadlineInput" />
-      <input type="number" id="percentInput" min="0" max="100" Placeholder = "%"/>
-    </form>
-
-    <div class="text-center">
-      <button type="submit" onclick="newElement()" id="addToMain" class="btn btn-primary">TODO zur Hauptseite hinzufügen</button>
-    </div>
+    
+   <form action= "" method="post">
+    {%csrf_token%}
+    {{form}}
+    
+    <input type = "submit">
+    </form>   
 </body>
 
 <!-- Javascript -->
 <script>
 
-/*
-    var inputValue = document.getElementById("myInput").value;
 
-*/
 </script>
 
 <!-- CSS -->
