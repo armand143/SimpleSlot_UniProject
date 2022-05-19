@@ -24,16 +24,15 @@
   <a href="{% url 'Impressum' %}">Impressum</a>
 </nav>
 
-<form action ="" method=POST>
-    {%csrf_token%}
-    {{form.as_p}}
-    <input type = "submit">
-</form> 
-
-
-
-
-
+<div class="row">
+  <div class="w-25 mx-md-auto">
+    <form action ="" method=POST>
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type = "submit" id="addToMain" class="btn btn-primary">
+    </form> 
+  </div>
+</div>
 </body>
 
 <!-- Javascript -->
@@ -51,6 +50,7 @@ background-color: rgb(207, 87, 87);
 }
 nav {
 padding: 5px;
+margin: 0 0 20px;
 text-align: center;
 font-size: 20px;
 width: 100%;
@@ -61,29 +61,12 @@ a {
 color:darkslategrey;
 padding-left: 15px;
 padding-right: 15px;
-}
-#inputs{
-margin: 50px 0px 0px 0px;
-}
-#titleInput {
-width: 65%;
-padding: 10px;
-font-size: 25px;
-}
-#deadlineInput {
-width: 150px;
-padding: 10px;
-font-size: 25px;
-}
-#percentInput {
-width: 80px;
-font-size: 25px;
-padding: 10px;
+text-decoration: none;
 }
 #addToMain {
-font-size: 25px;
+font-size: 20px;
 padding: 20px;
-margin: 40px;
+margin: 20px;
 }
 </style>
 
