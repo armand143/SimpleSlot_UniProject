@@ -38,11 +38,11 @@
     </div>
     -->
   
-   <form action= "" method="post">
-    {%csrf_token%}
-    {{form}}
+   <form action= "{% url 'Übersicht' %}" method="post">
+      {%csrf_token%}
+      {{form}}
     
-    <input type = "submit">
+      <input type = "submit">
     </form>
   
     
