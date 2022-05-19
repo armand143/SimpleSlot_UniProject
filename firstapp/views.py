@@ -13,9 +13,6 @@ def homepage(request):
     context ={'todos' : todos}
     return render(request,'firstapp/Übersicht.html', context)
 
-def index(request):
-    return HttpResponse("It started correctly, nice")
-
 def edit(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     form = TodoForm(request.POST or None, instance=todo)
