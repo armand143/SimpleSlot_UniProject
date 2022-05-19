@@ -51,64 +51,18 @@
                 <td>{{todo.deadline}}</td>
                 <td>{{todo.percent}}</td>
                 <td>
-                  <a class="btn btn-primary" href="{% url 'edit' todo.id %}" role="button">Edit</a>
+                  <a class="btn btn-primary" href="{% url 'edit' todo.id %}" role="button">&#x270E</a>
                   <button type="button" class="close" onclick="delRow()">&#215</button>
                 </td>
               </tr> 
             {% endfor %}
             </div>
-            <!--without database -->
-             <!--
-            <tr>
-              <td>Badezimmer schrubben</td>
-              <td>24.Mai 2022</td>
-              <td>99%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Fenster putzen</td>
-              <td>24.Mai 2022</td>
-              <td>100%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Staubsaugen</td>
-              <td>25.Mai 2022</td>
-              <td>100%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Blumen gießen</td>
-              <td>25.Mai 2022</td>
-              <td>0%</td>
-              <td>
-                <button type="submit" class="edit">&#x270E</button>
-                <button type="button" class="close" onclick="delRow()">&#215</button>
-              </td>
-            </tr> 
-          -->
-
           </tbody>
         </table>
       </div>
     </div>
-    <form action="EditTODO.html">
-      <input type="submit" value="Don't mind me!" />
-  </form>
 </div>
 </body>
-
-<!-- used guide for TODO-Lists:
-    https://www.w3schools.com/howto/howto_js_todolist.asp //-->
 
 <!-- Javascript -->
 <script>
