@@ -7,7 +7,7 @@ from .models import Todo
 
 def homepage(request):
     todos = Todo.objects.all().order_by('deadline')
-    return render(request,'firstapp\Übersicht.html', {'todos':todos})
+    return render(request,'firstapp/Übersicht.html', {'todos':todos})
 
 def index(request):
     return HttpResponse("It started correctly, nice")
