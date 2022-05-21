@@ -8,7 +8,3 @@ class Todo(models.Model):
     percent = models.PositiveIntegerField(default=0,
                 validators=[MaxValueValidator(100),MinValueValidator(0)])
 
-    def __str__(self):
-        return self.id
-
-
