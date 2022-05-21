@@ -4,6 +4,7 @@
 2. Technologien
 3. Anleitung zum Starten der Anwendung
 4. Autoren
+
 ## 1.Allgemeine Informationen 
 ***
 Die erstellte dynamische Webseite erfüllt die Funktinalität eines Todo Trackers.
@@ -23,7 +24,7 @@ Der Grundlegende Aufbau der html-Seiten fußt auf dem Ergebnis der Hausaufgabe 1
 - In den Hauptordner des Projektes navigieren ("todo_server", NICHT in den Unterordner)
 - Serverstarten per Terminal-Eingabe: python manage.py runserver
 - In einem Browser die Anwendung öffnen: localhost:8000
--  
+
 ## 4.Autoren
 ***
 Dies ist ein gemeinschaftliches Projekt von Federica Faßbender und Vincent Wehr.
