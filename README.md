@@ -27,4 +27,4 @@ Dies ist ein gemeinschaftliches Projekt von Federica Faßbender und Vincent Wehr
 - Terminal öffnen
 - In den Hauptordner des Projektes navigieren ("todo_server", NICHT in den Unterordner)
 - Serverstarten per Terminal-Eingabe: python manage.py runserver
-- In einem Browser die Seite öffnen: localhost:8000
+- In einem Browser die Anwendung öffnen: localhost:8000
