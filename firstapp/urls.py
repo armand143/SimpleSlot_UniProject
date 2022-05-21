@@ -7,5 +7,5 @@ urlpatterns = [
     path('impressum/', views.impressum, name='Impressum'),
     path('new/', views.new, name='New'),
     path('edit/<todo_id>', views.edit, name='edit'),
-    path('delete/<todo_id>', views.delete, name='delete')
+    path('delete/<todo_id>', views.delete, name='delete'),
 ]
