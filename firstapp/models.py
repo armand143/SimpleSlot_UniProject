@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Cluster(models.Model):
     title = models.CharField(max_length=250)
     quantity = models.PositiveIntegerField(default=0,
-                validators=[MaxValueValidator(100),MinValueValidator(0)])
+                validators=[MaxValueValidator(1),MinValueValidator(0)])
     duration= models.PositiveIntegerField()
     availability = models.DateField()
 
