@@ -18,16 +18,17 @@
 </head>
 <body>
     <header>
-        <h1><b>Übersicht</b></h1>
+        <h1><b>Cluster Ressourcen Übersicht</b></h1>
     </header>
 
     <nav>
         <a href="{% url 'Übersicht' %}">Übersicht</a>
-        <a href="{% url 'New' %}">Neues TODO</a>
+        <a href="{% url 'New' %}">Neue Ressource</a>
         <a href="{% url 'Impressum' %}">Impressum</a>
+        <a href="{% url 'homestudi' %}">homestudi</a>
     </nav>
 
-    <h3>TODO Liste</h3>
+    <h3>Cluster Liste</h3>
     
     <div class="container-fluid">
       <div class="table-responsive">
@@ -35,20 +36,25 @@
           <thead>
             <tr>
               <th>Titel</th>
-              <th>Deadline</th>
-              <th>Fortschritt</th>
+              <th>Quantity</th>
+              <th>Duration in days</th>
+              <th>Availability</th>
               <th>Aktionen</th>
             </tr>
           </thead>
           <tbody>
-            {% for todo in todos %}
+            {% for cl in cluster %}
               <tr>
-                <td class="col-lg-6">{{todo.title|truncatechars:160}}</td>
-                <td class="col-sm-2">{{todo.deadline.date}}</td>
-                <td class="col-sm-1">{{todo.percent}}%</td>
+                <td class="col-lg-6">{{cl.title}}</td>
+                <td class="col-sm-2">{{cl.quantity}}</td>
+                <td class="col-sm-1">{{cl.duration}}</td>
+                <td class="col-sm-1">
+                  <a class="btn btn-outline-secondary" href="" role="button">free dates</a>
+                  <a class="btn btn-outline-secondary" href="" role="button">taken dates</a>
+                </td>
                 <td class="col-sm-3">
-                  <a class="btn btn-primary" href="{% url 'edit' todo.id %}" role="button">&#x270E</a>
-                  <a class="btn close" href="{% url 'delete' todo.id %}" role="button">&#9747</a>
+                  <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
+                  <a class="btn close" href="{% url 'delete' cl.id %}" role="button">&#9747</a>
                 </td>
               </tr> 
             {% endfor %}
