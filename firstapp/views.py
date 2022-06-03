@@ -5,35 +5,51 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 # Create your views here.
-from .models import Todo
-from .forms import TodoForm
+from .models import Cluster 
+from .forms import  ClusterForm
 
 def homepage(request):
-    todos = Todo.objects.all()
-    context ={'todos' : todos}
-    return render(request,'firstapp/Übersicht.html', context)
+    cluster = Cluster.objects.all()
+    context ={'cluster' : cluster}
+    return render(request,'firstapp/ÜbersichtCLA.html', context)
 
-def index(request):
-    return HttpResponse("It started correctly, nice")
 
-def edit(request, todo_id):
-    todo = Todo.objects.get(pk=todo_id)
-    form = TodoForm(request.POST or None, instance=todo)
-    if form.is_valid():
-            form.save()
-            return redirect('Übbersicht')
-    return render(request, 'firstapp/EditTODO.html', {'todo': todo , 'form' : form} )
+
+def homepagestudis(request):
+    cluster = Cluster.objects.all()
+    context ={'cluster' : cluster}
+    return render(request,'firstapp/ÜbersichtCLS.html', context)
+
+def edit(request, cluster_id):
+    cluster = Cluster.objects.get(pk=cluster_id)
+    form = ClusterForm(request.POST or None, instance=cluster)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save() 
+        clusterr = Cluster.objects.all()
+        context ={'cluster' : clusterr}
+        return render(request,'firstapp/ÜbersichtCLA.html', context)
+    else:             
+        return render(request, 'firstapp/EditCL.html', {'cluster': cluster , 'form' : form} )
 
 def new(request):
-    form = TodoForm
+    form = ClusterForm
+    context = {'form' : form}
     if request.method== 'POST' :
         print(request.POST)
-        form = TodoForm(request.POST)
+        form = ClusterForm(request.POST)
         if form.is_valid():
             form.save()
-            
-    context = {'form' : form}
-    return render(request, 'firstapp/NewTODO.html', context)
+        clusterr = Cluster.objects.all()
+        contextt ={'cluster' : clusterr}
+        return render(request,'firstapp/ÜbersichtCLA.html', contextt)
+    else:          
+        return render(request, 'firstapp/NewCL.html', context)
+
+def delete(request, todo_id):
+     todo = Cluster.objects.get(pk=todo_id)
+     todo.delete()
+     return redirect('Übersicht')
 
 def impressum(request):
     return render(request, 'firstapp/Impressum.html')
