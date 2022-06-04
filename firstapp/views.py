@@ -13,8 +13,6 @@ def homepage(request):
     context ={'cluster' : cluster}
     return render(request,'firstapp/ÜbersichtCLA.html', context)
 
-
-
 def homepagestudis(request):
     cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
