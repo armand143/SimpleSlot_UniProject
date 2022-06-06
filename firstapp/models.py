@@ -13,6 +13,13 @@ class Cluster(models.Model):
 class freeDates(models.Model):
     date = models.DateField()   
 
+# not used yet, using the defaul "User" model of django
+class Nutzer(models.Model):
+    matrikelnummer = models.IntegerField(primary_key=True)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=64)
+    def str(self):
+        return '%s'%self.username
 
 
 class Todo(models.Model):

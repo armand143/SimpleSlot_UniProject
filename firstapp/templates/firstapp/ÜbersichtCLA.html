@@ -30,6 +30,10 @@
 
     <h3>Cluster Liste </h3>
     
+    <nav class="navbar">
+      <span>Logged in: {{request.user}}</span>
+      <a href="{% url 'Logout' %}" class="btn btn-info btn-lg">Logout</a>
+    </nav>
     
     <div class="container-fluid">
       <div class="table-responsive">
