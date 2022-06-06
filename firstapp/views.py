@@ -79,6 +79,9 @@ def homepage(request):
     context ={'cluster' : cluster}
     return render(request,'firstapp/ÜbersichtCLA.html', context)
 
+def login(request):
+   return render(request, 'firstapp/login.html')
+
 def homepagestudis(request):
     cluster = Cluster.objects.all()
     context ={'cluster' : cluster}

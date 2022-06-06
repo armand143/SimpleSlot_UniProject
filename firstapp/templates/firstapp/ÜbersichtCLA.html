@@ -24,9 +24,11 @@
     <nav>
         <a href="{% url 'Übersicht' %}">Übersicht</a>
         <a href="{% url 'New' %}">Neue Ressource</a>
-        <a href="{% url 'Impressum' %}">Impressum</a>
-        <a href="{% url 'homestudi' %}">homestudi</a>
+        <a href="{% url 'Übersicht' %}">Mein Profil</a>
+        <a href="{% url 'login' %}">Logout</a>
+        
     </nav>
+
 
     <h3>Cluster Liste </h3>
     
@@ -67,6 +69,11 @@
         </table>  
       </div>
     </div>
+    <footer class="footer">
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <a href="{% url 'Impressum' %}">Impressum</a>
+      </div>
+      </footer>
 </body>
 
 <!-- Javascript -->
@@ -109,6 +116,30 @@ h3 {
 .close:hover {
   background-color: #f44336;
 }
+6
+7
+8
+9
+10
+11
+12
+13
+14
+	
+html {
+	position: relative; /* relative positioning to help positioning the footer */
+	min-height: 100%; /* set min-height to help positioning the footer */
+}
+ 
+body {
+    margin-bottom: 100px; 	/* height of the footer must be specified as margin */
+}
+ 
+.footer {
+    position: absolute;
+	bottom: 0;
+	width: 100%;
+}
 </style>
   
 
@@ -120,4 +151,3 @@ h3 {
 </script>
 
 </html>
-
