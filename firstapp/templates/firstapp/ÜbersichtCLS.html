@@ -24,11 +24,16 @@
         <a href="{% url 'homestudi' %}">Übersicht</a>
         <a href="{% url 'homestudi' %}">Mein Profil</a>
         <a href="{% url 'homestudi' %}">Reservierte Termine</a>
+        <a href="{% url 'Login' %}">Login</a>
     </nav>
 
     <h3>Cluster Liste </h3>
     
-    
+    <nav class="navbar">
+      <span>Logged in: {{request.user}}</span>
+      <a href="{% url 'Logout' %}" class="btn btn-info btn-lg">Logout</a>
+    </nav>
+
     <div class="container-fluid">
       <div class="table-responsive">
         <table id="mainTable" class="table table-striped table-hover">

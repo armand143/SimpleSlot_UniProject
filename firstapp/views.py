@@ -22,7 +22,10 @@ def loggingin(request):
 
         if user is not None:
             login(request, user)
-            return redirect('Übersicht')
+            if username == 'admin':
+                return redirect('Übersicht')
+            else:
+                return redirect('homestudi')
         else:
             messages.error(request, "Name oder Passwort ist falsch.")
     return render(request, 'firstapp/login.html')
@@ -45,42 +48,13 @@ def register(request):
     context = {'form': form}
     return render(request, 'firstapp/register.html', context)
 
-# our own registration try without the defaul django Form
-# def register(request):
-#     if request.method == "POST":
-#         register_form = RegisterForm(request.POST)
-#         message = "check"
-#         if register_form.is_valid(): 
-#             matrikelnummer = register_form.cleaned_data['matrikelnummer']
-#             username = register_form.cleaned_data['username']
-#             password1 = register_form.cleaned_data['password1']
-#             password2 = register_form.cleaned_data['password2']        
-#             if password1 != password2: 
-#                 message = "Passwort muss übereinstimmen."
-#                 return render(request, 'firstapp/register.html', locals())
-#             else:
-#                 same_matrikelnummer = models.User.objects.filter(matrikelnummer=matrikelnummer)
-#                 if same_matrikelnummer:
-#                     message = 'Matrikelnummer existiert bereits.'
-#                     return render(request, 'firstapp/register.html', locals())
-
-#                 new_user = models.User.objects.create()
-#                 new_user.matrikelnummer = matrikelnummer
-#                 new_user.username = username
-#                 new_user.password = password1
-#                 new_user.save()
-#                 return redirect('/login/')
-#     register_form = RegisterForm()
-#     return render(request, 'firstapp/register.html', locals())
-
-
 def homepage(request):
     cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
     return render(request,'firstapp/ÜbersichtCLA.html', context)
 
-def login(request):
-   return render(request, 'firstapp/login.html')
+# def login(request):
+#     return render(request, 'firstapp/login.html')
 
 def homepagestudis(request):
     cluster = Cluster.objects.all()
