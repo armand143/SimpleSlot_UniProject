@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Cluster 
+from .models import Cluster, Nutzer
 from .forms import  ClusterForm, RegisterForm
 
 from django.contrib.auth import login, authenticate, logout
@@ -48,6 +48,10 @@ def register(request):
     context = {'form': form}
     return render(request, 'firstapp/register.html', context)
 
+def editProfil(request, user_id):
+    user = Nutzer.objects.get(pk=user_id)
+    return render(request, 'firstapp/EditProfil.html', {'user': user})
+
 def homepage(request):
     cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
@@ -67,8 +71,8 @@ def edit(request, cluster_id):
     if request.method == "POST":
         if form.is_valid():
             form.save() 
-        clusterr = Cluster.objects.all()
-        context ={'cluster' : clusterr}
+        clusterAll = Cluster.objects.all()
+        context ={'cluster' : clusterAll}
         return render(request,'firstapp/ÜbersichtCLA.html', context)
     else:             
         return render(request, 'firstapp/EditCL.html', {'cluster': cluster , 'form' : form} )
