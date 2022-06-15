@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title>Mein TODO</title>
+    <title>Meine Ressource</title>
     <meta name="author" content="Vincent Wehr, Federica Faßbender">
     <meta name="keywords" content="Hausarbeit,Praktikum">
     <meta charset="UTF-8"/>
@@ -16,12 +16,10 @@
 </head>
 <body>
     <header>
-        <h1><b>Neues TODO</b></h1>
+        <h1><b>Neue Ressource</b></h1>
     </header>
     <nav>
       <a href="{% url 'Übersicht' %}">Übersicht</a>
-      <a href="{% url 'New' %}">Neues TODO</a>
-      <a href="{% url 'Impressum' %}">Impressum</a>
     </nav>
     
     <div class="row">
@@ -33,6 +31,11 @@
           </form>  
       </div>
     </div>  
+    <footer class="footer">
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <a href="{% url 'Impressum' %}">Impressum</a>
+      </div>
+      </footer>
 </body>
 
 <!-- Javascript -->
@@ -67,6 +70,20 @@ a {
   font-size: 20px;
   padding: 20px;
   margin: 20px 40px;
+}
+html {
+	position: relative; /* relative positioning to help positioning the footer */
+	min-height: 100%; /* set min-height to help positioning the footer */
+}
+ 
+body {
+    margin-bottom: 100px; 	/* height of the footer must be specified as margin */
+}
+ 
+.footer {
+    position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 </style>
 
