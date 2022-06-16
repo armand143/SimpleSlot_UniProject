@@ -53,7 +53,12 @@ def editProfil(request, user_id):
     return render(request, 'firstapp/EditProfil.html', {'user': user})
 
 def homepage(request):
-    cluster = Cluster.objects.all()
+    if 'suche' in request.GET:
+        suche = request.GET['suche']
+        sortieren = Q(Q(tag_system__icontains=suche) | Q( title__icontains=suche) | Q( Beschreibung__icontains=suche))
+        cluster= Cluster.objects.filter(sortieren)
+    else:
+        cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
     return render(request,'firstapp/homepageAdmin.html', context)
 
@@ -61,7 +66,12 @@ def homepage(request):
 #     return render(request, 'firstapp/login.html')
 
 def homepagestudis(request):
-    cluster = Cluster.objects.all()
+    if 'suche' in request.GET:
+        suche = request.GET['suche']
+        sortieren = Q(Q(tag_system__icontains=suche) | Q( title__icontains=suche) | Q( Beschreibung__icontains=suche))
+        cluster= Cluster.objects.filter(sortieren)
+    else:
+        cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
     return render(request,'firstapp/homepageStudent.html', context)
 
