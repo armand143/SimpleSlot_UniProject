@@ -49,20 +49,23 @@
             </tr>
           </thead>
           <tbody>
-            {% for cl in cluster %}
+             {% for cl in cluster %}
+              
               <tr>
                 <td class="col-lg-6">{{cl.tag_system}}</td>
                 <td class="col-sm-2">{{cl.title}}</td>
                 <td class="col-sm-1">{{cl.Beschreibung}}</td>
+                {%if cl.availability == True %}
                 <td class="col-sm-1">
                   <a class="btn btn-outline-secondary" href="" role="button">reserve</a>
                 </td>
-                <td class="col-sm-3">
-                  <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
-                  <a class="btn close" href="{% url 'delete' cl.id %}" role="button">&#9747</a>
+                {%else%}
+                <td class="col-sm-1">
+                  <a class="btn btn-danger" href="" role="button">not available</a>
                 </td>
+                {% endif %}
               </tr>
-          
+            
             {% endfor %}
           </tbody>
         </table>  
