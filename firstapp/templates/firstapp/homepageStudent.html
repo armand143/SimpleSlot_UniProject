@@ -41,24 +41,28 @@
         <table id="mainTable" class="table table-striped table-hover">
           <thead>
             <tr>
-                <th>Titel</th>
-                <th>Quantity</th>
-                <th>Duration</th>
-                <th>Availability</th>
-                <th>Aktionen</th>
+              <th>Tag</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Reservations</th>
+              <th>Aktionen</th>
             </tr>
           </thead>
           <tbody>
             {% for cl in cluster %}
               <tr>
-                <td class="col-lg-6">{{cl.title|truncatechars:160}}</td>
-                <td class="col-sm-2">{{cl.quantity}}</td>
-                <td class="col-sm-1">{{cl.duration}}</td>
-                <td class="col-sm-1">{{cl.availability}}</td>
+                <td class="col-lg-6">{{cl.tag_system}}</td>
+                <td class="col-sm-2">{{cl.title}}</td>
+                <td class="col-sm-1">{{cl.Beschreibung}}</td>
+                <td class="col-sm-1">
+                  <a class="btn btn-outline-secondary" href="" role="button">reserve</a>
+                </td>
                 <td class="col-sm-3">
-                    <a class="btn btn-light" href="" role="button">free dates</a>
+                  <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
+                  <a class="btn close" href="{% url 'delete' cl.id %}" role="button">&#9747</a>
                 </td>
               </tr>
+          
             {% endfor %}
           </tbody>
         </table>  
