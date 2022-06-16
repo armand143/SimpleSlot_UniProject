@@ -55,7 +55,7 @@ def editProfil(request, user_id):
 def homepage(request):
     cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
-    return render(request,'firstapp/ÜbersichtCLA.html', context)
+    return render(request,'firstapp/homepageAdmin.html', context)
 
 # def login(request):
 #     return render(request, 'firstapp/login.html')
@@ -63,7 +63,7 @@ def homepage(request):
 def homepagestudis(request):
     cluster = Cluster.objects.all()
     context ={'cluster' : cluster}
-    return render(request,'firstapp/ÜbersichtCLS.html', context)
+    return render(request,'firstapp/homepageStudent.html', context)
 
 def edit(request, cluster_id):
     cluster = Cluster.objects.get(pk=cluster_id)
@@ -91,11 +91,10 @@ def new(request):
     else:          
         return render(request, 'firstapp/NewCL.html', context)
 
-def delete(request, todo_id):
-     todo = Cluster.objects.get(pk=todo_id)
-     todo.delete()
+def deletee(request, cluster_id):
+     cluster = Cluster.objects.get(pk=cluster_id)
+     cluster.delete()
      return redirect('Übersicht')
 
 def impressum(request):
     return render(request, 'firstapp/Impressum.html')
-    
