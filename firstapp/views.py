@@ -73,7 +73,7 @@ def edit(request, cluster_id):
             form.save() 
         clusterAll = Cluster.objects.all()
         context ={'cluster' : clusterAll}
-        return render(request,'firstapp/ÜbersichtCLA.html', context)
+        return render(request,'firstapp/homepageAdmin.html', context)
     else:             
         return render(request, 'firstapp/EditCL.html', {'cluster': cluster , 'form' : form} )
 
@@ -87,7 +87,7 @@ def new(request):
             form.save()
         clusterr = Cluster.objects.all()
         contextt ={'cluster' : clusterr}
-        return render(request,'firstapp/ÜbersichtCLA.html', contextt)
+        return render(request,'firstapp/homepageAdmin.html', contextt)
     else:          
         return render(request, 'firstapp/NewCL.html', context)
 
