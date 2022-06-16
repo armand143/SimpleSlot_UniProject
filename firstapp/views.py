@@ -11,6 +11,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from firstapp import models
+from django.db.models import Q
 
 def loggingin(request):
     if request.method == "POST":
