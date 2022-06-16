@@ -4,14 +4,18 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 class Cluster(models.Model):
+    tag_choice = (
+        ('Art' , 'Art'),
+        ('Chemistry' , 'Chemistry'),
+        ('Technical Devices' , 'Technical Devices'),
+        ('Cooking' , 'Cooking'),
+        ('Music' , 'Music'),
+    )
+    tag_system = models.CharField(max_length=30, blank=True, choices=tag_choice)
     title = models.CharField(max_length=250)
-    quantity = models.PositiveIntegerField(default=0,
-                validators=[MaxValueValidator(1),MinValueValidator(0)])
-    duration= models.PositiveIntegerField()
-    availability = models.DateField()
+    Beschreibung = models.CharField(max_length=250)
+    availability = models.BooleanField()
 
-class freeDates(models.Model):
-    date = models.DateField()   
 
 # not used yet, using the defaul "User" model from django
 class Nutzer(models.Model):
