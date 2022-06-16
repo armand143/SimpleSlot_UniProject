@@ -27,4 +27,4 @@ Der Grundlegende Aufbau der html-Seiten fußt auf dem Ergebnis der Hausaufgabe 1
 
 ## 4.Autoren
 ***
-Dies ist ein gemeinschaftliches Projekt von Federica Faßbender und Vincent Wehr.
+Dies ist ein gemeinschaftliches Projekt von Vincent Wehr, Federica Faßbender, David Hörmann, Armand Borel Kengne Tene und Yiran Sun.
