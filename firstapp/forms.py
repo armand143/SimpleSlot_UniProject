@@ -15,7 +15,7 @@ class TodoForm(ModelForm):
 class ClusterForm(ModelForm):
     class Meta:
         model = Cluster
-        fields = ('title', 'quantity', 'duration', 'availability')
+        fields = ('tag_system', 'title', 'Beschreibung', 'availability')
 
 class RegisterForm(UserCreationForm):
 #	matrikelnummer = forms.IntegerField(max_value="1000000")
