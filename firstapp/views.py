@@ -63,9 +63,6 @@ def homepage(request):
     context ={'cluster' : cluster}
     return render(request,'firstapp/homepageAdmin.html', context)
 
-# def login(request):
-#     return render(request, 'firstapp/login.html')
-
 def homepagestudis(request):
     if 'suche' in request.GET:
         suche = request.GET['suche']
