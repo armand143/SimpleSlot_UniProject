@@ -43,15 +43,15 @@
         <tbody>
             {% for cl in cluster %}
             <tr>
-              <td class="col-lg-6">{{cl.tag_system}}</td>
+              <td class="col-sm-1">{{cl.tag_system}}</td>
               <td class="col-sm-2">{{cl.title}}</td>
-              <td class="col-sm-1">{{cl.Beschreibung}}</td>
+              <td class="col-lg-6">{{cl.Beschreibung}}</td>
               {%if cl.availability == True %}
-              <td class="col-sm-1">
+              <td class="col-sm-2">
                 <a class="btn btn-outline-secondary" href="" role="button">reserve</a>
               </td>
               {%else%}
-              <td class="col-sm-1">
+              <td class="col-sm-2">
                 <a class="btn btn-danger" href="" role="button">not available</a>
               </td>
               {% endif %}
