@@ -57,10 +57,13 @@ def homepage(request):
     if 'suche' in request.GET:
         suche = request.GET['suche']
         sortieren = Q(Q(tag_system__icontains=suche) | Q( title__icontains=suche) | Q( Beschreibung__icontains=suche))
-        cluster= Cluster.objects.filter(sortieren)
+        cluster = Cluster.objects.filter(sortieren)
+    elif 'order_by' in request.GET:
+        order_by = request.GET.get('order_by', 'defaultOrderField')
+        cluster = Cluster.objects.all().order_by(order_by)
     else:
         cluster = Cluster.objects.all()
-    context ={'cluster' : cluster}
+    context = {'cluster' : cluster}
     return render(request,'firstapp/homepageAdmin.html', context)
 
 def homepagestudis(request):
@@ -68,9 +71,12 @@ def homepagestudis(request):
         suche = request.GET['suche']
         sortieren = Q(Q(tag_system__icontains=suche) | Q( title__icontains=suche) | Q( Beschreibung__icontains=suche))
         cluster= Cluster.objects.filter(sortieren)
+    elif 'order_by' in request.GET:
+        order_by = request.GET.get('order_by', 'defaultOrderField')
+        cluster = Cluster.objects.all().order_by(order_by)
     else:
         cluster = Cluster.objects.all()
-    context ={'cluster' : cluster}
+    context = {'cluster' : cluster}
     return render(request,'firstapp/homepageStudent.html', context)
 
 def edit(request, cluster_id):
