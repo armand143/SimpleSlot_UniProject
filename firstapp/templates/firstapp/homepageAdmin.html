@@ -3,16 +3,24 @@
 {% block title %}Homepage Admin{% endblock title %}
 
 {% block body %}
-<header>
   <h1>
     <b style="color:aliceblue"> SimpleSlot </b>
     <nav class="navbar" style="background-color: lightskyblue">
-      <span id="logged-in-as" style="background-color: rgba(0, 194, 194)">logged in: <br>{{request.user}}</span>
       <h1><b>Admin Homepage</b></h1>
-      <a style="background-color: rgba(0, 194, 194)" href="{% url 'Logout' %}" class="btn btn-info btn-lg">Logout</a>
+      <div>
+        <div class="dropstart">
+          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            M
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
+            <li><a class="dropdown-item" href="#" style="text-align: right">Profil</a></li>
+            <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </h1>
-</header>
 
   <nav>
       <a href="{% url 'Übersicht' %}">Übersicht</a>
