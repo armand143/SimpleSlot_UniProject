@@ -33,4 +33,13 @@ class Todo(models.Model):
                 validators=[MaxValueValidator(100),MinValueValidator(0)])
 
 
+class Reservation(models.Model):
+    cluster = models.ForeignKey(Cluster, on_delete=models.CASCADE)
+    clus_name = models.CharField(max_length=100)
+    date = models.CharField(max_length=100)
+
+class Datum(models.Model):
+    diction = models.JSONField(null = True)
+
+
 #python manage.py makemigrations --> python manage.py migrate

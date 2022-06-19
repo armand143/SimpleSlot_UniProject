@@ -1,7 +1,7 @@
 from dataclasses import fields
 from django import forms
 from django.forms import ModelForm
-from .models import Cluster, Todo, Nutzer
+from .models import Cluster, Todo, Nutzer, Reservation, Datum
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -30,3 +30,15 @@ class RegisterForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class ReservationForm(ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['clus_name', 'date']
+        widgets = {
+			'date': DateInput(),
+		}
