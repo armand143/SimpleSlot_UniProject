@@ -4,6 +4,8 @@ from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
+import firstapp
+
 from .models import Cluster, Nutzer
 from .forms import  ClusterForm, RegisterForm
 
@@ -112,3 +114,6 @@ def deletee(request, cluster_id):
 
 def impressum(request):
     return render(request, 'firstapp/Impressum.html')
+
+def reservation(request):
+    return render(request, 'firstapp/reservation.html')

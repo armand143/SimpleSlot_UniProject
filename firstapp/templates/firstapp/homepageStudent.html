@@ -56,11 +56,11 @@
               <td class="col-lg-6">{{cl.Beschreibung}}</td>
               {%if cl.availability == True %}
               <td class="col-sm-2">
-                <a class="btn btn-outline-secondary" href="" role="button">reserve</a>
+                <a class="btn btn-outline-secondary" href="{% url 'bookSlot' %}" role="button">book slot</a>
               </td>
               {%else%}
               <td class="col-sm-2">
-                <a class="btn btn-danger" href="" role="button">not available</a>
+                <a class="btn no-click" role="button">not available</a>
               </td>
               {% endif %}
             </tr>

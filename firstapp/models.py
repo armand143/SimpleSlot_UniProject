@@ -26,12 +26,16 @@ class Nutzer(models.Model):
     def str(self):
         return '%s'%self.username
 
-
-class Todo(models.Model):
-    title = models.CharField(max_length=250)
-    deadline = models.DateField()
-    percent = models.PositiveIntegerField(default=0,
-                validators=[MaxValueValidator(100),MinValueValidator(0)])
+class Appointment(models.Model):
+    timeslot_list = (
+        (0, '08:00 – 10:00'),
+        (1, '10:00 – 12:00'),
+        (2, '12:00 – 14:00'),
+        (3, '14:00 – 16:00'),
+        (4, '16:00 – 18:00'),
+        (5, '18:00 – 20:00'),
+    )
+    timeslot = models.IntegerField(choices=timeslot_list)
 
 
 #python manage.py makemigrations --> python manage.py migrate
