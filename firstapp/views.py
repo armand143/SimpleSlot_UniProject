@@ -11,6 +11,7 @@ from .forms import  ClusterForm, RegisterForm
 
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from firstapp import models
 from django.db.models import Q
@@ -51,8 +52,9 @@ def register(request):
     context = {'form': form}
     return render(request, 'firstapp/register.html', context)
 
+#will be replaced by yirans edit
 def editProfil(request, user_id):
-    user = Nutzer.objects.get(pk=user_id)
+    user = User.objects.get(pk=user_id)
     return render(request, 'firstapp/EditProfil.html', {'user': user})
 
 def homepage(request):
@@ -115,5 +117,6 @@ def deletee(request, cluster_id):
 def impressum(request):
     return render(request, 'firstapp/Impressum.html')
 
-def reservation(request):
-    return render(request, 'firstapp/reservation.html')
+def reservation(request, cluster_id):
+    cluster = Cluster.objects.get(pk=cluster_id)
+    return render(request, 'firstapp/reservation.html', {'cluster': cluster})

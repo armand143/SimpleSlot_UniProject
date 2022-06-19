@@ -9,9 +9,6 @@
     <h1><b>Homepage</b></h1>
     <div>
       <div class="dropstart">
-        <!-- <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-          M
-        </button> -->
         <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false" onclick="transformFunction(this)">
           <div class="menuBar1"></div>
           <div class="menuBar2"></div>
@@ -29,7 +26,7 @@
 
   <nav>
       <a href="{% url 'homestudi' %}">Übersicht</a>
-      <a href="{% url 'homestudi' %}">Mein Profil</a>
+      <a href="{% url 'EditProfil' user.id %}">Mein Profil</a>
       <a href="{% url 'homestudi' %}">Reservierte Termine</a>
       <!--same as logout button: 
         <a href="{% url 'Login' %}">Login</a> 

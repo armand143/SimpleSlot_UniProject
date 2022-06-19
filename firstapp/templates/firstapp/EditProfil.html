@@ -4,11 +4,10 @@
 
 {% block body %}
   <header>
-    <h1><b>Edit Profil</b></h1>
+    <h1><b>Edit Profil (in Progress)</b></h1>
   </header>
   <nav>
     <a href="{% url 'Übersicht' %}">Übersicht</a>
-    <a href="{% url 'New' %}">Neues TODO</a>
   </nav>
 
   <form method="POST" action="">
@@ -19,7 +18,8 @@
         <p>{{message}}</p>
       {% endfor %}
       {% csrf_token %}
-      <button type="submit" class="btn btn-primary btn-lg">Änderungen akzeptieren</button>
+
+      <button type="submit" class="btn btn-primary btn-lg" href="{% url 'Übersicht' %}">Änderungen akzeptieren</button>
     </div>
   </form>
   {% endblock body %}

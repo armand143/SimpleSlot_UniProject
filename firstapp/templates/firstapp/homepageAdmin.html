@@ -9,9 +9,11 @@
       <h1><b>Admin Homepage</b></h1>
       <div>
         <div class="dropstart">
-          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-            M
-          </button>
+          <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false" onclick="transformFunction(this)">
+            <div class="menuBar1"></div>
+            <div class="menuBar2"></div>
+            <div class="menuBar3"></div>
+          </div>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
             <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
             <li><a class="dropdown-item" href="#" style="text-align: right">Profil</a></li>
@@ -25,7 +27,7 @@
   <nav>
       <a href="{% url 'Übersicht' %}">Übersicht</a>
       <a href="{% url 'New' %}">Neue Ressource</a>
-      <a href="{% url 'Übersicht' %}">Mein Profil</a>
+      <a href="{% url 'EditProfil' user.id %}">Mein Profil</a>
       <!--same as logout button: 
         <a href="{% url 'Login' %}">Login</a> 
       -->
