@@ -15,7 +15,7 @@ class Cluster(models.Model):
     tag_system = models.CharField(max_length=30, blank=True, choices=tag_choice)
     title = models.CharField(max_length=250)
     Beschreibung = models.CharField(max_length=250)
-    availability = models.BooleanField()
+    availability = models.BooleanField()  
 
 
 # not used yet, using the defaul "User" model from django
