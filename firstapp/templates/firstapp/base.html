@@ -95,6 +95,30 @@ body {
 .dropdown-item {
   background-color: rgb(201, 153, 153);
 }
+/* menu block */
+.menu {
+  display: inline-block;
+  cursor: pointer;
+}
+.menuBar1, .menuBar2, .menuBar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+.change .menuBar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+.change .menuBar2 {
+  opacity: 0;
+}
+.change .menuBar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+/* menu end */
 </style>
 <!-- Bootstrap functionality -->
 <script 
@@ -103,6 +127,13 @@ body {
 	crossorigin="anonymous">
 </script>
 <script>
-  
+function transformFunction(x) {
+  x.classList.toggle("change");
+}
 </script>
-</html>
+
+  <div class="menu" onclick="transformFunction(this)">
+    <div class="menuBar1"></div>
+    <div class="menuBar2"></div>
+    <div class="menuBar3"></div>
+  </div>
