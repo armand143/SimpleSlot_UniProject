@@ -27,7 +27,7 @@
   <nav>
       <a href="{% url 'homestudi' %}">Übersicht</a>
       <a href="{% url 'EditProfil' user.id %}">Mein Profil</a>
-      <a href="{% url 'homestudi' %}">Reservierte Termine</a>
+      <a href="{% url 'ResPage' %}">Reservierte Termine</a>
       <!--same as logout button: 
         <a href="{% url 'Login' %}">Login</a> 
       -->
@@ -51,25 +51,26 @@
         </thead>
         <tbody>
             {% for cl in cluster %}
-            <tr>
-              <td class="col-sm-1">{{cl.tag_system}}</td>
-              <td class="col-sm-2">{{cl.title}}</td>
-              <td class="col-lg-6">{{cl.Beschreibung}}</td>
-              {%if cl.availability == True %}
-              <td class="col-sm-2">
-                <a class="btn btn-outline-secondary" href="{% url 'bookSlot' %}" role="button">book slot</a>
-              </td>
-              {%else%}
-              <td class="col-sm-2">
-                <a class="btn no-click" role="button">not available</a>
-              </td>
-              {% endif %}
-            </tr>
-          {% endfor %}
+              <tr>
+                <td class="col-sm-1">{{cl.tag_system}}</td>
+                <td class="col-sm-2">{{cl.title}}</td>
+                <td class="col-lg-6">{{cl.Beschreibung}}</td>
+                {%if cl.availability == True %}
+                  <td class="col-sm-1">
+                    <a class="btn btn-outline-secondary" href="{% url 'book' cl.id%}" role="button">reserve</a>
+                  </td>
+                  {%else%}
+                  <td class="col-sm-1">
+                    <a class="btn btn-danger" href="" role="button">not available</a>
+                  </td>
+                {% endif %}
+              </tr>  
+            {% endfor %}
         </tbody>
       </table>  
     </div>
   </div>
+
 {% endblock body %}
 
 {% block css %}

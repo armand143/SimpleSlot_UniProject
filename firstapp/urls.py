@@ -12,6 +12,9 @@ urlpatterns = [
     path('logout/', views.loggingout, name='Logout'),
     path('register/', views.register, name='Register'),
     path('editProfil/<user_id>', views.editProfil, name='EditProfil'),
+    path('book/<cluster_id>', views.book, name='book'),
+    path('respage/', views.ResPage, name='ResPage'),
+    path('book/<date_id>', views.book_slots, name='book_slots'),
+    path('book/<str:slot_value>/<str:date_value>', views.update_slots, name='update_slots'),
     path('reservation/', views.reservation, name='bookSlot'),
 ]
-
