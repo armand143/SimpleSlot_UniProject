@@ -224,7 +224,7 @@ def book(request, cluster_id):
     if request.method == 'POST' and form.is_valid:
         get_selected_date_set = Datum.objects.filter(diction__clus_title = cluster.title)  # gives a queryset with matching Date object
 
-        if len(get_selected_date_set) is 0:
+        if len(get_selected_date_set) == 0:
             form.date = str(request.POST['date'])
             form.save()
             picked_date = Datum(diction = {
