@@ -1,0 +1,34 @@
+{% extends 'firstapp/base.html' %}
+
+{% block title %}Reservation{% endblock title %}
+
+{% block body %}
+  <header>
+      <h1><b>Chose Time Slot</b></h1>
+  </header>
+
+  <nav>
+    <a href="{% url 'bookSlot' %}">PDAJPSAJD</a>
+  </nav>
+
+  <h1>Show a Date Control</h1>
+
+  <form action="/action_page.php">
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="birthday">
+    <input type="submit">
+  </form>
+  
+{% endblock body %}
+
+{% block css %}
+  <style>
+
+  </style>
+{% endblock css %}
+
+{% block javascript %}
+  <script>
+
+  </script>
+{% endblock javascript %}

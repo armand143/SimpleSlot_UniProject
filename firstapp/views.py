@@ -9,9 +9,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Cluster, Datum, Nutzer, Reservation, Datum
 from .forms import ClusterForm, RegisterForm, ReservationForm
+import firstapp
+
+from .models import Cluster, Nutzer
+from .forms import  ClusterForm, RegisterForm
 
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from firstapp import models
 from django.db.models import Q
@@ -60,38 +65,37 @@ def register(request):
     context = {'form': form}
     return render(request, 'firstapp/register.html', context)
 
-
+#will be replaced by yirans edit
 def editProfil(request, user_id):
-    user = Nutzer.objects.get(pk=user_id)
+    user = User.objects.get(pk=user_id)
     return render(request, 'firstapp/EditProfil.html', {'user': user})
 
 
 def homepage(request):
     if 'suche' in request.GET:
         suche = request.GET['suche']
-        sortieren = Q(Q(tag_system__icontains=suche) | Q(
-            title__icontains=suche) | Q(Beschreibung__icontains=suche))
+        sortieren = Q(Q(tag_system__icontains=suche) | Q( title__icontains=suche) | Q( Beschreibung__icontains=suche))
         cluster = Cluster.objects.filter(sortieren)
+    elif 'order_by' in request.GET:
+        order_by = request.GET.get('order_by', 'defaultOrderField')
+        cluster = Cluster.objects.all().order_by(order_by)
     else:
         cluster = Cluster.objects.all()
-    context = {'cluster': cluster}
-    return render(request, 'firstapp/homepageAdmin.html', context)
-
-# def login(request):
-#     return render(request, 'firstapp/login.html')
-
+    context = {'cluster' : cluster}
+    return render(request,'firstapp/homepageAdmin.html', context)
 
 def homepagestudis(request):
     if 'suche' in request.GET:
         suche = request.GET['suche']
-        sortieren = Q(Q(tag_system__icontains=suche) | Q(
-            title__icontains=suche) | Q(Beschreibung__icontains=suche))
-        cluster = Cluster.objects.filter(sortieren)
+        sortieren = Q(Q(tag_system__icontains=suche) | Q( title__icontains=suche) | Q( Beschreibung__icontains=suche))
+        cluster= Cluster.objects.filter(sortieren)
+    elif 'order_by' in request.GET:
+        order_by = request.GET.get('order_by', 'defaultOrderField')
+        cluster = Cluster.objects.all().order_by(order_by)
     else:
         cluster = Cluster.objects.all()
-    context = {'cluster': cluster}
-    return render(request, 'firstapp/homepageStudent.html', context)
-
+    context = {'cluster' : cluster}
+    return render(request,'firstapp/homepageStudent.html', context)
 
 def edit(request, cluster_id):
     cluster = Cluster.objects.get(pk=cluster_id)
@@ -295,3 +299,6 @@ def ResPage(request):
 class ReservationCreateView(CreateView):
     model = Reservation
     form_class = ReservationForm
+def reservation(request, cluster_id):
+    cluster = Cluster.objects.get(pk=cluster_id)
+    return render(request, 'firstapp/reservation.html', {'cluster': cluster})
