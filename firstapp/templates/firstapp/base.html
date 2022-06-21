@@ -21,7 +21,7 @@
 
 <footer class="footer">
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        <a href="{% url 'Impressum' %}">Impressum</a>
+        <a href="{% url 'Impressum' %}">About</a>
     </div>
 </footer>
 
@@ -81,10 +81,11 @@ body {
   width: 100%;
 }
 .table-head-button:hover {
-  background: lightblue;
+  color: rgba(5, 7, 8, 0.438);
 }
 .dropdown-item {
-  background-color: rgb(201, 153, 153);
+  background-color: rgb(0, 194, 194);
+  text-align: right;
 }
 /* menu block */
 .menu {
@@ -108,6 +109,9 @@ body {
 .change .menuBar3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
+}
+#returnBtn:hover {
+  color:white;
 }
 #text {
   font-size: 18px;

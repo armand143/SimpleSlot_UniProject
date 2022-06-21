@@ -34,6 +34,9 @@ class Reservation(models.Model):
     date = models.DateField()
     user = models.ForeignKey(User, on_delete= models.CASCADE)
 
+    class Meta:
+        unique_together = ('cluster', 'date')
+
     def __str__(self):
         return self.user.username
 

@@ -19,7 +19,7 @@
           <input type="text" id="inputName" name="username" class="form-control" placeholder="Username" required />
         </div>
         <div class="form-outline mb-4">
-          <label class="form-label" for="inputPassword">Passwort</label>
+          <label class="form-label" for="inputPassword">Password</label>
           <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Passwort" required />
         </div>
         <button type="submit" class="btn btn-primary btn-lg" style="padding:10px 80px">Login</button>
@@ -28,8 +28,8 @@
   </div>
   <hr/>
   <div class="text-center">
-    <p>Noch kein Account?</p>
-    <a class="btn btn-secondary" href="{% url 'Register' %}" role="button">Registrieren</a>  
+    <p>No account yet?</p>
+    <a class="btn btn-secondary" href="{% url 'Register' %}" role="button">Register</a>  
   </div>
 {% endblock body %}
 
