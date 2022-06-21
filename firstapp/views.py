@@ -11,9 +11,6 @@ from .models import Cluster, Datum, Nutzer, Reservation, Datum
 from .forms import ClusterForm, RegisterForm, ReservationForm
 import firstapp
 
-from .models import Cluster, Nutzer
-from .forms import  ClusterForm, RegisterForm
-
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User

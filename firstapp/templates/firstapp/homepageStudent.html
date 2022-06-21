@@ -3,6 +3,24 @@
 {% block title %}Homepage Studi{% endblock title %}
 
 {% block body %}
+
+<h1><b style="color:aliceblue"> SimpleSlot </b></h1>
+<div class="row" style="background-color:lightblue">
+  <h2 id ="sitename" class="col-11"><b>Homepage</b></h2>
+  <div class="dropstart col-1 align-self-center">
+    <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false" onclick="transformFunction(this)">
+      <div class="menuBar1"></div>
+      <div class="menuBar2"></div>
+      <div class="menuBar3"></div>
+    </div>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+      <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
+      <li><a class="dropdown-item" href="{% url 'EditProfil' user.id %}" style="text-align: right">Mein Profil</a>
+      <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
+    </ul>
+  </div>
+</div>
+<!-- old messy header
 <h1>
   <b style="color:aliceblue"> SimpleSlot </b>
   <nav class="navbar" style="background-color: lightskyblue">
@@ -16,25 +34,22 @@
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
           <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-          <li><a class="dropdown-item" href="#" style="text-align: right">Profil</a></li>
+          <li><a class="dropdown-item" href="{% url 'EditProfil' user.id %}" style="text-align: right">Mein Profil</a>
           <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
-</h1>
+</h1> -->
 
   <nav>
       <a href="{% url 'homestudi' %}">Übersicht</a>
       <a href="{% url 'EditProfil' user.id %}">Mein Profil</a>
       <a href="{% url 'ResPage' %}">Reservierte Termine</a>
-      <!--same as logout button: 
-        <a href="{% url 'Login' %}">Login</a> 
-      -->
   </nav>
   <div>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm2" name="suche" type="search" placeholder="Search" aria-lable="Search">
+      <input class="form-control mr-sm2" name="suche" type="search" placeholder="search for..." aria-lable="Search">
       <button class="btn btn-outline-secondary" type="submit">Search</button>
     </form>
   </div>
