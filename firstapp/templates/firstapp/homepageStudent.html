@@ -46,6 +46,9 @@
       <a href="{% url 'homestudi' %}">Übersicht</a>
       <a href="{% url 'EditProfil' user.id %}">Mein Profil</a>
       <a href="{% url 'ResPage' %}">Reservierte Termine</a>
+      <!--same as logout button: 
+        <a href="{% url 'Login' %}">Login</a> 
+      -->
   </nav>
   <div>
     <form class="form-inline my-2 my-lg-0">
@@ -72,7 +75,7 @@
                 <td class="col-lg-6">{{cl.Beschreibung}}</td>
                 {%if cl.availability == True %}
                   <td class="col-sm-1">
-                    <a class="btn btn-outline-secondary" href="{% url 'book' cl.id%}" role="button">reserve</a>
+                    <a class="btn btn-outline-secondary" href="{% url 'bookSlot' cl.id %}" role="button">reserve</a>
                   </td>
                   {%else%}
                   <td class="col-sm-1">
