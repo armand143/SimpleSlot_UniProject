@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Cluster, Datum, Nutzer, Reservation, Datum
+from .models import Cluster, Nutzer, Reservation
 from .forms import ClusterForm, RegisterForm, ReservationForm
 import firstapp
 
@@ -139,6 +139,18 @@ def remove_dups(list):
     return unique_list 
 
 
-def reservation(request, cluster_id):
+def reservation(request, cluster_id, user_id):
+    form = ReservationForm
     cluster = Cluster.objects.get(pk=cluster_id)
-    return render(request, 'firstapp/reservation.html', {'cluster': cluster})
+    user = User.objects.get(pk=user_id)
+
+    if request.method == 'POST':
+        print(request.POST)
+        form = ClusterForm(request.POST)
+        if form.is_valid():
+            form.save()
+        clusterr = Cluster.objects.all()
+        contextt = {'cluster': clusterr}
+        return render(request, 'firstapp/homepageAdmin.html', contextt)
+        
+    return render(request, 'firstapp/reservation.html', {'cluster': cluster, 'form': form, 'user': user})

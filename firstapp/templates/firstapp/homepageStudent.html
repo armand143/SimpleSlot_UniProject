@@ -73,7 +73,7 @@
                 <td class="col-lg-6">{{cl.Beschreibung}}</td>
                 {%if cl.availability == True %}
                   <td class="col-sm-1">
-                    <a class="btn btn-outline-secondary" href="{% url 'bookSlot' cl.id %}" role="button">reserve</a>
+                    <a class="btn btn-outline-secondary" href="{% url 'bookSlot' cl.id user.id %}" role="button">reserve</a>
                   </td>
                   {%else%}
                   <td class="col-sm-1">

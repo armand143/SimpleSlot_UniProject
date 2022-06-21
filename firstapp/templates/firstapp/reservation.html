@@ -8,7 +8,7 @@
   </header>
 
   <nav>
-    <a href="{% url 'bookSlot' cluster %}">PDAJPSAJD</a>
+    <a href="{% url 'bookSlot' cluster.id user.id %}">cluster</a>
   </nav>
 
    <h1>Show a Date Control</h1>
@@ -33,14 +33,15 @@
     </div>
   </div>
 
+  <form action= "" method="post">
+    {%csrf_token%}
+    <p><b>{{form.cluster.label}}</b></p>
+    <p>{{form.cluster.title}}</p>
+    <p> <input type="date"> </p>
+    <p>{{user.username}}</p>
+    <input type = "submit" id="addToMain" class="btn btn-primary">
+  </form> 
 
-
-  <form action="/action_page.php">
-    <label for="birthday">Birthday:</label>
-    <input type="date" id="birthday" name="birthday">
-    <input type="submit">
-  </form>
-  
 {% endblock body %}
 
 {% block css %}

@@ -12,5 +12,5 @@ urlpatterns = [
     path('logout/', views.loggingout, name='Logout'),
     path('register/', views.register, name='Register'),
     path('editProfil/<user_id>', views.editProfil, name='EditProfil'),
-    path('reservation/<cluster_id>', views.reservation, name='bookSlot'),
+    path('reservation/<cluster_id>/<user_id>', views.reservation, name='bookSlot'),
 ]
