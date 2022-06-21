@@ -44,14 +44,14 @@
         <table id="mainTable" class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>Available slots on: {{picked_date}}</th>
+              <th>Available slots on: {{picked_date}} ,{{cluster_id}}</th>
             </tr>
           </thead>
           <tbody>
              {% for sl in av_slots %}
               <tr>
                 <td class="col-sm-1">
-                  <a class="btn btn-success" href="{% url 'update_slots' sl picked_date %}" role="button">{{sl}}</a>
+                  <a class="btn btn-success" href="{% url 'update_slots' sl picked_date cluster_id %}" role="button">{{sl}}</a>
                 </td>
               </tr>
             {% endfor %}

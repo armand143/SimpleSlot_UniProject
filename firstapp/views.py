@@ -143,37 +143,72 @@ def remove_dups(list):
     return unique_list 
 
 
-def update_slots(request, slot_value, date_value):
-
-    picked_cluster = Datum.objects.filter(diction__date = date_value)[0]
-    picked_date = picked_cluster.diction['date']
-    if picked_date == '':
-        picked_cluster.diction['date'] = date_value
-        picked_cluster.save()
-
-    picked_date_obj = Datum.objects.filter(diction__date = date_value)[0] #Datum.objects.get(date_name=date_value)
-    picked_date_dict = Datum.objects.filter(diction__date = date_value)[0].diction  #could be more than 1 cause you filter with date ...use clus_title for unique data
-    
-
-    picked_date_dict['not_av_slots'].append(slot_value)
-    picked_date_dict['av_slots'].remove(slot_value)
-    picked_date_obj.diction = picked_date_dict
-    picked_date_obj.save()
-
-    temp_list = picked_date_dict['not_av_slots']
-
-    picked_date_dict['not_av_slots'] = remove_dups(temp_list)
-    picked_date_obj.diction = picked_date_dict
-    picked_date_obj.save()
-
-    contextt = {'picked_date': picked_date_obj.diction['date'],
-                'av_slots': picked_date_obj.diction['av_slots']
-                }
-    return render(request, 'firstapp/slot_booking.html', contextt)
+def check_clus_diff_date(request, clust_id, picked_date):
+    all_dicts = Datum.objects.filter(diction__clus_id = clust_id, diction__date = picked_date)
+    for dict_obj in all_dicts:
+        if (dict_obj.diction['clus_id'] == clust_id) and (dict_obj.diction['date'] != picked_date) :
+            return True
+        else: 
+            return False
 
 
-def book_slots(request, date):
-    picked_date = Datum.objects.filter(diction__date = date)[0] #date #Datum.objects.get(pk=date_id)
+def update_slots(request, slot_value, date_value, clust_id):
+
+    picked_cluster_list = Datum.objects.filter(diction__clus_id = clust_id, diction__date = date_value)
+
+    if len(picked_cluster_list) == 0:
+        book_slots(request, clust_id, date_value)
+
+        picked_date_obj = picked_cluster_list[0] #Datum.objects.get(date_name=date_value)
+        picked_date_dict = picked_date_obj.diction  
+        
+
+        picked_date_dict['not_av_slots'].append(slot_value)
+        picked_date_dict['av_slots'].remove(slot_value)
+        picked_date_obj.diction = picked_date_dict
+        picked_date_obj.save()
+
+        temp_list = picked_date_dict['not_av_slots']
+
+        picked_date_dict['not_av_slots'] = remove_dups(temp_list)
+        picked_date_obj.diction = picked_date_dict
+        picked_date_obj.save()
+
+        contextt = {'picked_date': picked_date_obj.diction['date'],
+                    'av_slots': picked_date_obj.diction['av_slots'], 
+                    'cluster_id': clust_id
+                    }
+        return render(request, 'firstapp/slot_booking.html', contextt)
+
+
+    else:
+
+        picked_date_obj = picked_cluster_list[0] #Datum.objects.get(date_name=date_value)
+        picked_date_dict = picked_date_obj.diction  
+        
+
+        picked_date_dict['not_av_slots'].append(slot_value)
+        picked_date_dict['av_slots'].remove(slot_value)
+        picked_date_obj.diction = picked_date_dict
+        picked_date_obj.save()
+
+        temp_list = picked_date_dict['not_av_slots']
+
+        picked_date_dict['not_av_slots'] = remove_dups(temp_list)
+        picked_date_obj.diction = picked_date_dict
+        picked_date_obj.save()
+
+        contextt = {'picked_date': picked_date_obj.diction['date'],
+                    'av_slots': picked_date_obj.diction['av_slots'], 
+                    'cluster_id': clust_id
+                    }
+        return render(request, 'firstapp/slot_booking.html', contextt)
+
+    #return book_slots(request, clust_id, datum_obj.diction['date'])  #ignore this libe if everything works
+
+
+def book_slots(request, clus_id, date):
+    #picked_date = Datum.objects.filter(diction__date = date)[0] #date #Datum.objects.get(pk=date_id)
     available_slots = ['08:00 -09:00',
                        '09:30 -10:30',
                        '11:00 -12:00',
@@ -183,14 +218,19 @@ def book_slots(request, date):
                        '17:00 -18:00'
                        ]
 
-    if picked_date is not NULL:
+    if check_clus_diff_date(request, clus_id, date) == True:
+        return available_slots
+        
+    else: 
+        print(date)
+        print(clus_id)
+        picked_date = Datum.objects.filter(diction__clus_id = clus_id, diction__date = date)[0] 
         booked_slots = picked_date.diction['not_av_slots']
-        free_slots = []
-
-        if len(booked_slots) == 0:
+        free_slots = []  
+        if len(booked_slots) == 0: 
             picked_date.diction['av_slots'] = available_slots
             picked_date.save()
-
+        
         else:
             for s in available_slots:
                 if s not in booked_slots:
@@ -200,17 +240,7 @@ def book_slots(request, date):
 
         return remove_dups(picked_date.diction['av_slots'])
 
-    else:
-        return []
 
-
-def dict_exists(request, dict):
-    all_dicts = Datum.objects.all()
-    for dict_obj in all_dicts:
-        if dict.diction['clus_title'] == dict_obj.diction['clus_title'] and dict.diction['date'] == dict_obj.diction['date']:
-            return True
-        else:
-            return False
 
 def book(request, cluster_id):
     available_slots = []
@@ -219,10 +249,20 @@ def book(request, cluster_id):
     res.cluster = cluster
     res.clus_name = cluster.title
 
+    datum_obj_for_cluster = Datum(diction = {
+                                           'clus_tag': cluster.tag_system,
+                                           'clus_title' : cluster.title,
+                                           'date': '00-00-00',
+                                           'clus_description': cluster.Beschreibung,
+                                           'av_slots': [],
+                                           'not_av_slots': [],
+                                           'clus_id' : cluster_id
+                                            })
+
     form = ReservationForm(request.POST or None, instance=res)
     context = {'form': form}
     if request.method == 'POST' and form.is_valid:
-        get_selected_date_set = Datum.objects.filter(diction__clus_title = cluster.title)  # gives a queryset with matching Date object
+        get_selected_date_set = Datum.objects.filter(diction__clus_id = cluster_id, diction__date = '00-00-00')  # gives a queryset with matching Date object
 
         if len(get_selected_date_set) is 0:
             form.date = str(request.POST['date'])
@@ -233,36 +273,35 @@ def book(request, cluster_id):
                                            'date': str(request.POST['date']),
                                            'clus_description': cluster.Beschreibung,
                                            'av_slots': [],
-                                           'not_av_slots': []
+                                           'not_av_slots': [],
+                                           'clus_id' : cluster_id
                })
             picked_date.save()
-            available_slots = book_slots(request, str(request.POST['date']))
+            available_slots = book_slots(request, cluster_id, str(request.POST['date']))
 
         else:
             form.date = str(request.POST['date'])
             form.save()
 
-            picked_cluster = Datum.objects.filter(diction__clus_title = cluster.title)[0]
+            picked_cluster = Datum.objects.filter(diction__clus_id = cluster_id)[0]
             picked_date = picked_cluster.diction['date']
-            if dict_exists(request, picked_cluster) == False: #picked_date == '':
+            if check_clus_diff_date(request, cluster_id, str(request.POST['date'])):    #check if cluster exists but for some different date
                 new_date_same_cluster = Datum(diction = {         
                                                         'clus_tag': cluster.tag_system,
                                                         'clus_title' : cluster.title,
                                                         'date': str(request.POST['date']),
                                                         'clus_description': cluster.Beschreibung,
                                                         'av_slots': [],
-                                                        'not_av_slots': []
+                                                        'not_av_slots': [],
+                                                        'cluster_id' : cluster_id
                                                         })
                 new_date_same_cluster.save()    #because we should be capable to book the same cluster for different dates 
-                available_slots =  book_slots(request, new_date_same_cluster.diction['date'])
+                available_slots =  book_slots(request, cluster_id, str(request.POST['date'])) #new_date_same_cluster.diction['date'])
 
             else:
                 # picked_cluster.diction['date'] = str(request.POST['date'])
                 # picked_cluster.save()
-                available_slots =  book_slots(request, picked_cluster.diction['date'])
-            #picked_date = Datum.objects.filter(diction__date = str(request.POST['date']))[0]
-
-            
+                available_slots =  book_slots(request, cluster_id, str(request.POST['date']))  #cluster exists-> then retreive slot lists from DB
 
     else:
         return render(request, 'firstapp/reservationForm.html', context)
@@ -277,7 +316,8 @@ def book(request, cluster_id):
                 'res_dates': reserved_dates,
                 'cluster': clusters,
                 'mytext': messages,
-                'test': clus
+                'test': clus,
+                'cluster_id': cluster_id
                 }
 
     return render(request, 'firstapp/slot_booking.html', contextt)
