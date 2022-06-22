@@ -26,7 +26,11 @@
       <a href="{% url 'EditProfil' user.id %}">My Profil</a>
       <a href="{% url 'homestudi' %}">Reserved Ressources</a>
   </nav>
-
+  {% for message in messages %}
+    <p>{{message}}</p>
+  {% endfor %}
+  <!-- {{message.success}}
+  {{message.error}} -->
   <div>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm2" name="suche" type="search" placeholder="search for..." aria-lable="Search">

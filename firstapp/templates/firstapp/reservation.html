@@ -36,13 +36,12 @@
       </table>  
     </div>
   </div>
-
-  <form action= "" method="post">
+  {{message.error}}
+<!--   <form action= "" method="post">
     {%csrf_token%}
     <p>{{form.date}}</p>
     <button type="submit" class="btn btn-primary">Reserve (Default Form)</button>
-  </form>
-  {{ value|default_if_none:""}}
+  </form> -->
   <div class="text-center">
     <form action= "" method="post"> 
       {%csrf_token%}

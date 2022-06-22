@@ -13,7 +13,7 @@ class Cluster(models.Model):
         ('Cooking' , 'Cooking'),
         ('Music' , 'Music'),
     )
-
+    
     tag_system = models.CharField(max_length=30, blank=True, choices=tag_choice)
     title = models.CharField(max_length=250)
     Beschreibung = models.CharField(max_length=250)

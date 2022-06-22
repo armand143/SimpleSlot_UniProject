@@ -25,9 +25,11 @@ class RegisterForm(UserCreationForm):
 			user.save()
 		return user
 
-
-class DateInput(forms.DateInput):
-	input_type = 'date'
+#help ReservationForm so that User can only interact with date (no change to given cluster or user)
+class DateInput(forms.ModelForm):
+	class Meta:
+		model = Reservation
+		fields = ['date']
 
 class ReservationForm(ModelForm):
 	class Meta:

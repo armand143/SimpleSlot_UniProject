@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Cluster, Nutzer, Reservation
-from .forms import ClusterForm, RegisterForm, ReservationForm
+from .forms import ClusterForm, RegisterForm, ReservationForm, DateInput
 import firstapp
 
 from django.contrib.auth import login, authenticate, logout
@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from firstapp import models
 from django.db.models import Q
+from django.db import IntegrityError
 from django.views.generic.edit import CreateView
 #from django.utils import simplejson as json
 import json
@@ -142,7 +143,8 @@ def remove_dups(list):
 
 def reservation(request, cluster_id, user_id):
     if request.method == 'POST':
-        form = ReservationForm(request.POST, initial={'cluster':cluster_id, 'user':user_id},)
+        """ form = ReservationForm(request.POST, initial={'cluster':cluster_id, 'user':user_id},) """
+        form = DateInput(request.POST)
         """form.fields['cluster'].initial = cluster_id
         form.fields['user'].initial = user_id """
         if form.is_valid():
@@ -151,12 +153,23 @@ def reservation(request, cluster_id, user_id):
             date = form.cleaned_data['date']
             r = Reservation(cluster=clusterID, date=date, user=userID)
             r.save() """
-            ReserveModel = form.save(commit=False)
-            ReserveModel.save()
+            """ ReserveModel = form.save(commit=False) """
+            date = form.cleaned_data['date']
+            cluster = Cluster.objects.get(pk=cluster_id)
+            user = User.objects.get(pk=user_id)
+            r = Reservation(cluster=cluster, date=date, user=user)
+            try:
+                r.save()
+            except IntegrityError:
+                messages.error(request,'Cluster already booked at that time.')
+                """this is wrong -> return redirect('bookSlot', cluster_id, user_id) """
+            else:
+                messages.success(request,'Reservation was successfull.')
         cluster = Cluster.objects.all()
         context = {'cluster': cluster}
         return render(request,'firstapp/homepageStudent.html', context)
-    form = ReservationForm(initial={'cluster':cluster_id, 'user':user_id})
+    """ form = ReservationForm(initial={'cluster':cluster_id, 'user':user_id}) """
+    form = DateInput
     cluster = Cluster.objects.get(pk=cluster_id)
     user = User.objects.get(pk=user_id)    
     return render(request, 'firstapp/reservation.html', {'cluster': cluster, 'form': form, 'user': user})
