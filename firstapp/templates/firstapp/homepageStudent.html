@@ -23,7 +23,6 @@
 
   <nav>
       <a href="{% url 'homestudi' %}">Homepage</a>
-      <a href="{% url 'EditProfil' user.id %}">My Profil</a>
       <a href="{% url 'homestudi' %}">Reserved Ressources</a>
   </nav>
   {% for message in messages %}
@@ -61,7 +60,7 @@
                   </td>
                   {%else%}
                   <td class="col-sm-1">
-                    <a class="btn btn-danger" href="" role="button">not available</a>
+                    <a class="btn btn-danger" href="" role="button" disabled>not available</a>
                   </td>
                 {% endif %}
               </tr>  

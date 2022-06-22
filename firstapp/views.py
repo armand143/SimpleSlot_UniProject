@@ -145,15 +145,7 @@ def reservation(request, cluster_id, user_id):
     if request.method == 'POST':
         """ form = ReservationForm(request.POST, initial={'cluster':cluster_id, 'user':user_id},) """
         form = DateInput(request.POST)
-        """form.fields['cluster'].initial = cluster_id
-        form.fields['user'].initial = user_id """
         if form.is_valid():
-            """ userID = form.cleaned_data['userID']
-            clusterID = form.cleaned_data['clusterID']
-            date = form.cleaned_data['date']
-            r = Reservation(cluster=clusterID, date=date, user=userID)
-            r.save() """
-            """ ReserveModel = form.save(commit=False) """
             date = form.cleaned_data['date']
             cluster = Cluster.objects.get(pk=cluster_id)
             user = User.objects.get(pk=user_id)
