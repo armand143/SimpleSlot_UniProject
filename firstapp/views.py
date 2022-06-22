@@ -1,4 +1,5 @@
 from cmath import pi
+from collections import UserDict
 from multiprocessing import context
 from sqlite3 import Date
 from tkinter import Entry
@@ -140,17 +141,22 @@ def remove_dups(list):
 
 
 def reservation(request, cluster_id, user_id):
-    form = ReservationForm
-    cluster = Cluster.objects.get(pk=cluster_id)
-    user = User.objects.get(pk=user_id)
-
     if request.method == 'POST':
-        print(request.POST)
-        form = ClusterForm(request.POST)
+        form = ReservationForm(request.POST, initial={'cluster':cluster_id, 'user':user_id},)
+        """form.fields['cluster'].initial = cluster_id
+        form.fields['user'].initial = user_id """
         if form.is_valid():
-            form.save()
-        clusterr = Cluster.objects.all()
-        contextt = {'cluster': clusterr}
-        return render(request, 'firstapp/homepageAdmin.html', contextt)
-        
+            """ userID = form.cleaned_data['userID']
+            clusterID = form.cleaned_data['clusterID']
+            date = form.cleaned_data['date']
+            r = Reservation(cluster=clusterID, date=date, user=userID)
+            r.save() """
+            ReserveModel = form.save(commit=False)
+            ReserveModel.save()
+        cluster = Cluster.objects.all()
+        context = {'cluster': cluster}
+        return render(request,'firstapp/homepageStudent.html', context)
+    form = ReservationForm(initial={'cluster':cluster_id, 'user':user_id})
+    cluster = Cluster.objects.get(pk=cluster_id)
+    user = User.objects.get(pk=user_id)    
     return render(request, 'firstapp/reservation.html', {'cluster': cluster, 'form': form, 'user': user})

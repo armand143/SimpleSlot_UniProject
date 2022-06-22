@@ -39,18 +39,37 @@
 
   <form action= "" method="post">
     {%csrf_token%}
-    <p><b>{{form.cluster.label}}</b></p>
-    <p>{{form.cluster.title}}</p>
-    <p> <input type="date"> </p>
-    <p>{{user.username}}</p>
-    <input type = "submit" id="addToMain" class="btn btn-primary">
-  </form> 
-
+    <p>{{form.date}}</p>
+    <button type="submit" class="btn btn-primary">Reserve (Default Form)</button>
+  </form>
+  {{ value|default_if_none:""}}
+  <div class="text-center">
+    <form action= "" method="post"> 
+      {%csrf_token%}
+      <label for="userIDInputDefault"><b>User: {{user.username}}</b> with ID:</label>
+      <input type="text" name="userID" id="userIDInputDefault" value={{user.id}} size="1" disabled />
+      <label for="cluserIDInputDefault"><b>Cluster: {{cluster.title}}</b> with ID:</label>
+      <input type="text" name="clusterID" id="cluserIDInputDefault" value={{cluster.id}} size="1" disabled />
+      <label for="reserveDate"><b>Pick A Date</b></label>
+      <input type="date" name="date" id="reserveDate" />
+      <button type="submit" class="btn btn-primary">Reserve (Own Form)</button>
+    </form> 
+  </div>
 {% endblock body %}
 
 {% block css %}
   <style>
-
+    label {
+      font-size: 18px;
+    }
+    input {
+      display: block;
+      margin : 0px auto 10px;
+      font-size: 18px;
+    }
+    input[disabled] {
+      border: 0;
+    }
   </style>
 {% endblock css %}
 

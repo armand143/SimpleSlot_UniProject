@@ -5,11 +5,11 @@ from .models import Cluster, Nutzer, Reservation
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-                
+				
 class ClusterForm(ModelForm):
-    class Meta:
-        model = Cluster
-        fields = ('tag_system', 'title', 'Beschreibung', 'availability')
+	class Meta:
+		model = Cluster
+		fields = ('tag_system', 'title', 'Beschreibung', 'availability')
 
 class RegisterForm(UserCreationForm):
 #	matrikelnummer = forms.IntegerField(max_value="1000000")
@@ -27,9 +27,18 @@ class RegisterForm(UserCreationForm):
 
 
 class DateInput(forms.DateInput):
-    input_type = 'date'
+	input_type = 'date'
 
 class ReservationForm(ModelForm):
-    class Meta:
-        model = Reservation
-        fields = ['cluster', 'date', 'user']
+	class Meta:
+		model = Reservation
+		fields = ['cluster', 'date', 'user']
+	date = forms.DateField(
+        widget=forms.DateInput(format='%m/%d/%Y'),
+        input_formats=('%m/%d/%Y', )
+        )
+	
+""" 	def __init__(self, *args, **kwargs):
+		user = kwargs.pop('user','')
+		super(ReservationForm, self).__init__(*args, **kwargs)
+		self.fields[''] """

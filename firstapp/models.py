@@ -19,6 +19,9 @@ class Cluster(models.Model):
     Beschreibung = models.CharField(max_length=250)
     availability = models.BooleanField()  
 
+    def __str__(self):
+        return self.title
+
 
 # not used yet, using the defaul "User" model from django
 class Nutzer(models.Model):
