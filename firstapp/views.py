@@ -123,10 +123,16 @@ def new(request):
         return render(request, 'firstapp/NewCL.html', context)
 
 
-def deletee(request, cluster_id):
+def deleteCluster(request, cluster_id):
     cluster = Cluster.objects.get(pk=cluster_id)
     cluster.delete()
     return redirect('Übersicht')
+
+
+def deleteReservation(request, reservation_id):
+    reservation = Reservation.objects.get(pk=reservation_id)
+    reservation.delete()
+    return redirect('MyReservations')
 
 
 def impressum(request):
