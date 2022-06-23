@@ -1,0 +1,39 @@
+{% extends 'firstapp/base.html' %}
+
+
+{% block body %}
+<h2>Account Info</h2>
+<ul>
+   <li>Username: {{user.username}} </li>
+
+
+</ul>
+<h2>Update My Profile</h2>
+
+<div class="form-wrapper">
+   <form method="post" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{user_form.as_p}}
+      {{user_profile_form.as_p}}
+      {% comment %} {% for field in form %}
+      <div class="fieldWrapper">
+         {{ field.errors }}
+         {{ field.label_tag }} {{ field }}
+         {% if field.help_text %}
+         <p class="help">{{ field.help_text|safe }}</p>
+         {% endif %}
+      </div>
+      {% endfor %} {% endcomment %}
+
+
+      <div class="button-wrapper submit">
+         <input type="submit" value="Update" />
+      </div>
+   </form>
+</div>
+
+<a href="{% url 'Logout' %}">Logout</a> |
+<a href="{% url 'password_change' %}">Password change</a> |
+<a href="{% url 'homestudi' %}">Homepage</a>
+
+{% endblock body %}

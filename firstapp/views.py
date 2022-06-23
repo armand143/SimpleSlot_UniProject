@@ -6,8 +6,9 @@ from tkinter import Entry
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
-from .models import Cluster, Nutzer, Reservation
+from .models import Cluster, Reservation, UserProfile
 from .forms import ClusterForm, RegisterForm, ReservationForm, DateInput
 import firstapp
 
@@ -22,7 +23,31 @@ from django.views.generic.edit import CreateView
 #from django.utils import simplejson as json
 import json
 from django.forms.models import model_to_dict
+from .forms import *
 
+def profile(request, user_id):
+    
+    user = get_object_or_404(User, pk=user_id)
+    return render(request, 'firstapp/profile.html', {'user': user})
+
+def profile_update(request, user_id):
+
+    if request.method == "POST":
+        user_form = UserForm(request.POST, instance=request.user)
+        user_profile_form = UserProfileForm(request.POST, instance=request.user.profile)
+
+        if user_form.is_valid() and user_profile_form.is_valid():
+
+            user_form.save()
+            user_profile_form.user = user_form
+            user_profile_form.save()
+
+            return HttpResponseRedirect(reverse('profile', args=[user_id]))
+    else:
+        user_form = UserForm(instance=request.user)
+        user_profile_form = UserProfileForm(instance=request.user.profile)
+
+    return render(request, 'firstapp/profile_update.html', {'user_form': user_form, 'user_profile_form': user_profile_form})
 
 def loggingin(request):
     if request.method == "POST":
@@ -48,6 +73,7 @@ def loggingout(request):
     return redirect('Login')
 
 
+"""old register:
 def register(request):
     form = RegisterForm()
     if request.method == "POST":
@@ -61,12 +87,30 @@ def register(request):
             messages.error(
                 request, "Registrierung fehlgeschlagen. Bitte erneut versuchen.")
     context = {'form': form}
+    return render(request, 'firstapp/register.html', context) """
+
+def register(request):
+    form = RegisterForm()
+    user_profile_form = UserProfileForm()
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        user_profile_form = UserProfileForm(request.POST)
+        print(form.is_valid, user_profile_form.is_valid)
+        if form.is_valid() and user_profile_form.is_valid():
+            # create user
+            user = form.save()
+            user.save()
+            profile = user_profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            
+            messages.success(request, "Erfolgreich registriert.")
+            return redirect('Login')
+        else:
+            messages.error(request, "Registrierung fehlgeschlagen. Bitte erneut versuchen.")
+    context = {'form': form, 'user_profile_form': user_profile_form, }
     return render(request, 'firstapp/register.html', context)
 
-#will be replaced by yirans edit
-def editProfil(request, user_id):
-    user = User.objects.get(pk=user_id)
-    return render(request, 'firstapp/EditProfil.html', {'user': user})
 
 
 def homepage(request):

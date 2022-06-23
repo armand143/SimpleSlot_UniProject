@@ -1,7 +1,7 @@
 from dataclasses import fields
 from django import forms
 from django.forms import ModelForm
-from .models import Cluster, Nutzer, Reservation
+from .models import Cluster, Reservation, UserProfile
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -40,7 +40,20 @@ class ReservationForm(ModelForm):
         input_formats=('%m/%d/%Y', )
         )
 	
-""" 	def __init__(self, *args, **kwargs):
-		user = kwargs.pop('user','')
-		super(ReservationForm, self).__init__(*args, **kwargs)
-		self.fields[''] """
+class ProfileForm(forms.Form):
+
+    email = forms.CharField(label='Email', max_length=50, required=False)
+    matrikelnummer = forms.IntegerField(label='Matrikelnummer', required=False)
+
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['email', 'matrikelnummer']

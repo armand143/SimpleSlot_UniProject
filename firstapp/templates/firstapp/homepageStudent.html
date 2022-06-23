@@ -15,7 +15,7 @@
     </div>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
       <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-      <li><a class="dropdown-item" href="{% url 'EditProfil' user.id %}" style="text-align: right">My Profil</a>
+      <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: right">My Profil</a>
       <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
     </ul>
   </div>
