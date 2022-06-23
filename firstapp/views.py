@@ -176,6 +176,6 @@ def reservation(request, cluster_id, user_id):
 def myreservation(request, user_id):
     n = User.objects.get(pk=user_id)
     s = Q(Q(user=n))
-    reservation = Reservation.objects.filter(s)
+    reservation = Reservation.objects.filter(s).order_by('cluster', 'date')
     context= {'reservation' : reservation}
     return render(request,'firstapp/myreservations.html', context)
