@@ -23,6 +23,7 @@
 
   <nav>
       <a href="{% url 'homestudi' %}">Homepage</a>
+      <a href="{% url 'MyReservations' user.id %}">Reserved Ressources</a>
   </nav>
   {% for message in messages %}
     <p>{{message}}</p>
