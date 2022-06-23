@@ -165,3 +165,11 @@ def reservation(request, cluster_id, user_id):
     cluster = Cluster.objects.get(pk=cluster_id)
     user = User.objects.get(pk=user_id)    
     return render(request, 'firstapp/reservation.html', {'cluster': cluster, 'form': form, 'user': user})
+
+
+def myreservation(request, user_id):
+    n = User.objects.get(pk=user_id)
+    s = Q(Q(user=n))
+    reservation = Reservation.objects.filter(s)
+    context= {'reservation' : reservation}
+    return render(request,'firstapp/myreservations.html', context)
