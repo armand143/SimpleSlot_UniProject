@@ -132,7 +132,10 @@ def deleteCluster(request, cluster_id):
 def deleteReservation(request, reservation_id):
     reservation = Reservation.objects.get(pk=reservation_id)
     reservation.delete()
-    return redirect('MyReservations')
+    """ return redirect('MyReservations') """
+    reservationAll = Reservation.objects.order_by('cluster', 'date')
+    context= {'reservation' : reservationAll}
+    return render(request,'firstapp/myreservations.html', context)
 
 
 def impressum(request):
@@ -149,7 +152,6 @@ def remove_dups(list):
 
 def reservation(request, cluster_id, user_id):
     if request.method == 'POST':
-        """ form = ReservationForm(request.POST, initial={'cluster':cluster_id, 'user':user_id},) """
         form = DateInput(request.POST)
         if form.is_valid():
             date = form.cleaned_data['date']
@@ -166,7 +168,6 @@ def reservation(request, cluster_id, user_id):
         cluster = Cluster.objects.all()
         context = {'cluster': cluster}
         return render(request,'firstapp/homepageStudent.html', context)
-    """ form = ReservationForm(initial={'cluster':cluster_id, 'user':user_id}) """
     form = DateInput
     cluster = Cluster.objects.get(pk=cluster_id)
     user = User.objects.get(pk=user_id)    
