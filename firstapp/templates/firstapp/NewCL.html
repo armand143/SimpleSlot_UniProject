@@ -7,7 +7,7 @@
       <h1><b>New Cluster-Resource</b></h1>
   </header>
   <nav>
-    <a href="{% url 'Übersicht' %}">Übersicht</a>
+    <a href="{% url 'Übersicht' %}">Homepage</a>
   </nav>
 
   <div class="row">
@@ -16,7 +16,7 @@
           {%csrf_token%}
           {{form.as_p}}
           <input type = "submit" id="addToMain" class="btn btn-primary">
-        </form>  
+        </form> 
     </div>
   </div>  
 {% endblock body %}

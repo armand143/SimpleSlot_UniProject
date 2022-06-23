@@ -7,18 +7,45 @@
       <h1><b>Chose Time Slot</b></h1>
   </header>
 
-  <nav>
-    <a href="{% url 'bookSlot' %}">PDAJPSAJD</a>
-  </nav>
-
   <h1>Show a Date Control</h1>
 
-  <form action="/action_page.php">
-    <label for="birthday">Birthday:</label>
-    <input type="date" id="birthday" name="birthday">
-    <input type="submit">
-  </form>
+  <!-- <nav>
+    <a href="{% url 'bookSlot' cluster.id user.id %}">cluster</a>
+  </nav> -->
+  <nav>
+    <a href="{% url 'homestudi' %}">Homepage</a>
+  </nav>
   
+  <div class="container-fluid">
+    <div class="table-responsive">
+      <table id="mainTable" class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><a class="table-head-button" href="?order_by=tag_system">Tag</a></th>
+            <th><a class="table-head-button" href="?order_by=title">Title</a></th>
+            <th><a class="table-head-button" href="?order_by=Beschreibung">Description</a></th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr>
+                <td class="col-sm-1">{{cluster.tag_system}}</td>
+                <td class="col-sm-2">{{cluster.title}}</td>
+                <td class="col-lg-6">{{cluster.Beschreibung}}</td>
+              </tr>  
+        </tbody>
+      </table>  
+    </div>
+  </div>
+
+  <form action= "" method="post">
+    {%csrf_token%}
+    <p><b>{{form.cluster.label}}</b></p>
+    <p>{{form.cluster.title}}</p>
+    <p> <input type="date"> </p>
+    <p>{{user.username}}</p>
+    <input type = "submit" id="addToMain" class="btn btn-primary">
+  </form> 
+
 {% endblock body %}
 
 {% block css %}

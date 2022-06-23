@@ -1,8 +1,7 @@
 from dataclasses import fields
 from django import forms
 from django.forms import ModelForm
-from .models import Cluster, Nutzer, Reservation, Datum
-from .models import Cluster, Nutzer
+from .models import Cluster, Nutzer, Reservation
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -33,7 +32,4 @@ class DateInput(forms.DateInput):
 class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
-        fields = ['clus_name', 'date']
-        widgets = {
-			'date': DateInput(),
-		}
+        fields = ['cluster', 'date', 'user']
