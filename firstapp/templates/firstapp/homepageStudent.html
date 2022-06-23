@@ -15,7 +15,7 @@
     </div>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
       <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-      <li><a class="dropdown-item" href="{% url 'EditProfil' user.id %}" style="text-align: right">My Profil</a>
+      <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: right">My Profil</a>
       <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
     </ul>
   </div>
@@ -23,10 +23,13 @@
 
   <nav>
       <a href="{% url 'homestudi' %}">Homepage</a>
-      <a href="{% url 'EditProfil' user.id %}">My Profil</a>
-      <a href="{% url 'homestudi' %}">Reserved Ressources</a>
+      <a href="{% url 'MyReservations' user.id %}">Reserved Ressources</a>
   </nav>
-
+  {% for message in messages %}
+    <p>{{message}}</p>
+  {% endfor %}
+  <!-- {{message.success}}
+  {{message.error}} -->
   <div>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm2" name="suche" type="search" placeholder="search for..." aria-lable="Search">
@@ -57,7 +60,7 @@
                   </td>
                   {%else%}
                   <td class="col-sm-1">
-                    <a class="btn btn-danger" href="" role="button">not available</a>
+                    <a class="btn btn-danger" href="" role="button" disabled>not available</a>
                   </td>
                 {% endif %}
               </tr>  

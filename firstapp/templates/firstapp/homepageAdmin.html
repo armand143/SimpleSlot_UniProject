@@ -14,7 +14,7 @@
       </div>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
         <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-        <li><a class="dropdown-item" href="{% url 'EditProfil' user.id %}" style="text-align: right">My Profil</a>
+        <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: right">My Profil</a>
         <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
       </ul>
     </div>
@@ -23,7 +23,6 @@
   <nav>
       <a href="{% url 'Übersicht' %}">Homepage</a>
       <a href="{% url 'New' %}">New Ressource</a>
-      <a href="{% url 'EditProfil' user.id %}">My Profil</a>
   </nav>
 
   <form class="form-inline my-2 my-lg-0">
@@ -56,7 +55,7 @@
               </td>
               <td class="col-sm-3">
                 <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
-                <a class="btn close" href="{% url 'delete' cl.id %}" role="button">&#9747</a>
+                <a class="btn close" href="{% url 'deleteCluster' cl.id %}" role="button">&#9747</a>
               </td>
             </tr> 
           {% endfor %}
