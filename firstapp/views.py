@@ -176,7 +176,14 @@ def reservation(request, cluster_id, user_id):
 
 def myreservation(request, user_id):
     n = User.objects.get(pk=user_id)
-    s = Q(Q(user=n))
-    reservation = Reservation.objects.filter(s).order_by('cluster', 'date')
+    c = Cluster.objects.all()
+    if 'suche' in request.GET:
+        suche = request.GET['suche']
+        sortieren = Q(Q(cluster__title__icontains=suche) & Q(user=n))
+        reservation = Reservation.objects.filter(sortieren).order_by('cluster', 'date')
+    else:     
+       s = Q(Q(user=n))
+       reservation = Reservation.objects.filter(s).order_by('cluster', 'date')
     context= {'reservation' : reservation}
     return render(request,'firstapp/myreservations.html', context)
+
