@@ -26,19 +26,32 @@ class RegisterForm(UserCreationForm):
 		return user
 
 #help ReservationForm so that User can only interact with date (no change to given cluster or user)
-class DateInput(forms.ModelForm):
-	class Meta:
-		model = Reservation
-		fields = ['date']
+# class DateInput(forms.ModelForm):
+# 	class Meta:
+# 		model = Reservation
+# 		fields = ['date']
+
+# class ReservationForm(ModelForm):
+# 	class Meta:
+# 		model = Reservation
+# 		fields = ['cluster', 'date', 'user']
+# 	date = forms.DateField(
+#         widget=forms.DateInput(format='%m/%d/%Y'),
+#         input_formats=('%m/%d/%Y', )
+#         )
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class ReservationForm(ModelForm):
-	class Meta:
-		model = Reservation
-		fields = ['cluster', 'date', 'user']
-	date = forms.DateField(
-        widget=forms.DateInput(format='%m/%d/%Y'),
-        input_formats=('%m/%d/%Y', )
-        )
+    class Meta:
+        model = Reservation
+        fields = ['date', 'user']
+        widgets = {
+            'cluster_title': forms.TextInput(attrs= {'class': 'form-control'}),
+			'date': DateInput(),
+            
+		}
 	
 class ProfileForm(forms.Form):
 

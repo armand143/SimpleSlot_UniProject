@@ -4,12 +4,9 @@
 
 {% block body %}
   <header>
-      <h1><b>Chose Time Slot</b></h1>
+      <h1><b>Choose Time Slot</b></h1>
   </header>
 
-  <!-- <nav>
-    <a href="{% url 'bookSlot' cluster.id user.id %}">cluster</a>
-  </nav> -->
   <nav>
     <a href="{% url 'homestudi' %}">Homepage</a>
   </nav>
@@ -41,17 +38,8 @@
   <div class="text-center">
     <form action= "" method="post"> 
       {%csrf_token%}
-      <label for="userIDInputDefault"><b>User: {{user.username}}</b></label>
-      <pre>with ID:</pre>
-      <input type="text" name="userID" id="userIDInputDefault" value={{user.id}} size="1" disabled />
-
-      <label for="cluserIDInputDefault"><b>Cluster: {{cluster.title}}</b> with ID:</label>
-      <pre>with ID:</pre>
-      <input type="text" name="clusterID" id="cluserIDInputDefault" value={{cluster.id}} size="1" disabled />
-      
-      <label for="reserveDate"><b>Pick A Date</b></label>
-      <input type="date" name="date" id="reserveDate" />
-      <button type="submit" class="btn btn-primary">Reserve</button>
+      {{ form.as_p }}
+      <input type="submit" value="reserve" />
     </form> 
   </div>
 {% endblock body %}

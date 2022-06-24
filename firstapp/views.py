@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Cluster, Reservation, UserProfile
+from .models import Cluster, Reservation, UserProfile, Users_reservations_dict
 from .forms import ClusterForm, RegisterForm, ReservationForm, DateInput
 import firstapp
 
@@ -24,6 +24,7 @@ from django.views.generic.edit import CreateView
 import json
 from django.forms.models import model_to_dict
 from .forms import *
+from datetime import datetime
 
 def profile(request, user_id):
     
@@ -193,41 +194,184 @@ def remove_dups(list):
             unique_list.append(l)
     return unique_list 
 
+def update_reservations(request):
+    all_dicts_list = Users_reservations_dict.objects.all()
+    current_day = datetime.today().date()
+    current_time = datetime.now().time()
 
-def reservation(request, cluster_id, user_id):
-    if request.method == 'POST':
-        form = DateInput(request.POST)
-        if form.is_valid():
-            date = form.cleaned_data['date']
-            cluster = Cluster.objects.get(pk=cluster_id)
-            user = User.objects.get(pk=user_id)
-            r = Reservation(cluster=cluster, date=date, user=user)
-            try:
-                r.save()
-            except IntegrityError:
-                messages.error(request,'Cluster already booked at that time.')
-                """this is wrong -> return redirect('bookSlot', cluster_id, user_id) """
+    for dict in all_dicts_list:
+        if dict.not_av_slots != 0:
+            for sl in dict.not_av_slots:
+                res_date = datetime.strptime(dict.reservation.date, '%Y-%m-%d').date()
+                slot_value = datetime.strptime(sl[-5:], '%H:%M').time()
+                if (current_day >= res_date) and  (current_time > slot_value):
+                    dict.not_av_slots.remove(sl)
+                    dict.save()
+                    dict.reservation.av_slots.append(sl)  #if doesn't work properly, try filtering through Reservations.objects() then get concerned reservation and apply changes accordingly
+                    dict.reservation.save()
+                elif (current_day > res_date):
+                    res_id = dict.reservation.id
+                    Reservation.objects.get(pk = res_id).delete()
+
+
+def update_slots(request, slot_value, res_id, user_id):
+
+    current_user = User.objects.get(pk = user_id)
+
+    choosen_Reservation = Reservation.objects.get(pk = res_id)
+
+    users_dict = Users_reservations_dict.objects.filter(reservation = choosen_Reservation, user = current_user)[0]
+    users_not_av_list = users_dict.not_av_slots
+
+    choosen_Reservation.av_slots.remove(slot_value)
+    choosen_Reservation.save()
+
+    users_not_av_list.append(slot_value)
+    users_dict.save()
+
+    reservation_objs = Reservation.objects.all()
+    contextt = {'res_objs': reservation_objs,
+                'available_slots': choosen_Reservation.av_slots,
+                'res_id': res_id,
+
+                }
+    return render(request, 'firstapp/slot_booking.html', contextt)
+
+def whole_day(request, res_id, user_id):
+    available_slots = ['08:00 -09:00',
+                    '09:30 -10:30',
+                    '11:00 -12:00',
+                    '12:30 -13:30',
+                    '14:00 -15:00',
+                    '15:30 -16:30',
+                    '17:00 -18:00'
+                    ]
+
+    current_user = User.objects.get(pk = user_id)
+
+    choosen_Reservation = Reservation.objects.get(pk = res_id)
+
+    users_dict = Users_reservations_dict.objects.filter(reservation = choosen_Reservation, user = current_user)[0]
+
+    if len(users_dict.reservation.av_slots) == 7:
+        choosen_Reservation.av_slots = []
+        choosen_Reservation.save()
+
+        users_dict.not_av_slots = available_slots
+        users_dict.save()
+        
+        reservation_objs = Reservation.objects.all()
+        contextt = {'res_objs': reservation_objs,
+                    'available_slots': choosen_Reservation.av_slots,
+                    'booked_slots': choosen_Reservation.not_av_slots,
+                    'res_id': res_id,
+                    }
+        return render(request, 'firstapp/slot_booking.html', contextt)
+
+
+
+def book(request, cluster_id, user_id):
+    while True: 
+        #update_reservations(request)
+        available_slots = ['08:00 -09:00',
+                        '09:30 -10:30',
+                        '11:00 -12:00',
+                        '12:30 -13:30',
+                        '14:00 -15:00',
+                        '15:30 -16:30',
+                        '17:00 -18:00'
+                        ]
+
+        cluster = Cluster.objects.get(pk=cluster_id)
+        current_user = User.objects.get(pk = user_id)
+        res = Reservation()
+        res.clusterr = cluster
+        res.cluster_title = cluster.title
+        res.user = current_user
+
+        form = ReservationForm(request.POST or None, instance=res)
+        context = {'form': form,'cluster': cluster,'user': current_user}
+
+        if request.method == 'POST' and form.is_valid:
+            # check for Reservation obj with passed cluster
+            res_list = Reservation.objects.filter(
+                clusterr=cluster, date=request.POST['date'])
+
+            # check if res_list has an obj in it, then create new reservation if necessary or find reservation
+            if len(res_list) == 0:
+                new_res = Reservation(clusterr=cluster, date=request.POST['date'], not_av_slots=[
+                ], av_slots=available_slots, user = current_user)
+                new_res.save()
+
+                # create a new object with newly created reservation linked to current_user
+                newly_created_res = Reservation.objects.filter(
+                    clusterr=cluster, date=request.POST['date'])[0]
+                avail_list = newly_created_res.av_slots
+
+                dict = Users_reservations_dict(reservation = newly_created_res, user = current_user, not_av_slots = [])
+                dict.save()
+                
             else:
-                messages.success(request,'Reservation was successfull.')
-        cluster = Cluster.objects.all()
-        context = {'cluster': cluster}
-        return render(request,'firstapp/homepageStudent.html', context)
-    form = DateInput
-    cluster = Cluster.objects.get(pk=cluster_id)
-    user = User.objects.get(pk=user_id)    
-    return render(request, 'firstapp/reservation.html', {'cluster': cluster, 'form': form, 'user': user})
+                # check if reservation with current user exists
+                if len(Users_reservations_dict.objects.filter(reservation = res_list[0], user = current_user)) == 0:
+                    dict = Users_reservations_dict(reservation = res_list[0], user = current_user, not_av_slots = [])
+                    dict.save()
+
+                avail_list = Users_reservations_dict.objects.filter(reservation = res_list[0], user = current_user)[0].reservation.av_slots
+                context = {'available_slots': avail_list,
+                        'picked_date': request.POST['date'],
+                        'res_id': res_list[0].id,
+                        'reservation': res_list[0],
+                        'cluster': cluster,
+                        'user': current_user
+                        }
+                return render(request, 'firstapp/slot_booking.html', context)
+
+        else:
+            return render(request, 'firstapp/reservationForm.html', context)
+
+        reservation_objs = Reservation.objects.all()
+        contextt = {'res_objs': reservation_objs,
+                    'available_slots': avail_list,
+                    'picked_date': request.POST['date'],
+                    'res_id': newly_created_res.id,
+                    'cluster': cluster,
+                    'user': current_user
+                    
+                    }
+        return render(request, 'firstapp/slot_booking.html', contextt)
 
 
-def myreservation(request, user_id):
-    n = User.objects.get(pk=user_id)
-    c = Cluster.objects.all()
-    if 'suche' in request.GET:
-        suche = request.GET['suche']
-        sortieren = Q(Q(cluster__title__icontains=suche) & Q(user=n))
-        reservation = Reservation.objects.filter(sortieren).order_by('cluster', 'date')
-    else:     
-       s = Q(Q(user=n))
-       reservation = Reservation.objects.filter(s).order_by('cluster', 'date')
-    context= {'reservation' : reservation}
-    return render(request,'firstapp/myreservations.html', context)
+
+def ResPage(request, user_id):
+    while True: 
+        #update_reservations(request)
+        n = User.objects.get(pk=user_id)
+        reserved_objs = Users_reservations_dict.objects.filter(user = n)
+        contextt = {'res_objs': reserved_objs,
+                    }
+        return render(request, 'firstapp/ReservierteTermine.html', contextt)
+
+
+
+
+
+class ReservationCreateView(CreateView):
+    model = Reservation
+    form_class = ReservationForm
+
+
+
+# def myreservation(request, user_id):
+#     n = User.objects.get(pk=user_id)
+#     c = Cluster.objects.all()
+#     if 'suche' in request.GET:
+#         suche = request.GET['suche']
+#         sortieren = Q(Q(cluster__title__icontains=suche) & Q(user=n))
+#         reservation = Reservation.objects.filter(sortieren).order_by('cluster', 'date')
+#     else:     
+#        s = Q(Q(user=n))
+#        reservation = Reservation.objects.filter(s).order_by('cluster', 'date')
+#     context= {'reservation' : reservation}
+#     return render(request,'firstapp/myreservations.html', context)
 

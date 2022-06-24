@@ -23,7 +23,7 @@
 
   <nav>
       <a href="{% url 'homestudi' %}">Homepage</a>
-      <a href="{% url 'MyReservations' user.id %}">Reserved Ressources</a>
+      <a href="{% url 'ResPage' user.id %}">My reservations</a>
   </nav>
   {% for message in messages %}
     <p>{{message}}</p>
@@ -56,7 +56,7 @@
                 <td class="col-lg-6">{{cl.Beschreibung}}</td>
                 {%if cl.availability == True %}
                   <td class="col-sm-1">
-                    <a class="btn btn-outline-secondary" href="{% url 'bookSlot' cl.id user.id %}" role="button">reserve</a>
+                    <a class="btn btn-outline-secondary" href="{% url 'book' cl.id user.id%}" role="button">reserve</a>
                   </td>
                   {%else%}
                   <td class="col-sm-1">
