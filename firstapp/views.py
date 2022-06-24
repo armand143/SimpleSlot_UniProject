@@ -59,7 +59,7 @@ def loggingin(request):
 
         if user is not None:
             login(request, user) 
-            if username == 'admin':
+            if username == 'adminProject':
                 return redirect('Übersicht')
             else:
                 return redirect('homestudi')
