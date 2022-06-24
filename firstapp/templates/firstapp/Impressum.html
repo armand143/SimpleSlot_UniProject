@@ -1,20 +1,33 @@
 {% extends 'firstapp/base.html' %}
+{% load static %}
 
 {% block title %}About{% endblock title %}
 
 {% block body %}
-  <header>
-      <h1><b>About</b></h1>
-  </header>
+
+  <div class="header">
+    <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
+    
+    <div class="spacer" style="background-color:rgb(255, 255, 255)">
+    </div>
+
+    <div class="about" style="background-color:rgb(255, 255, 255)">
+      About SimpleSlot
+    </div>
+  </div>
+
+
   <div class="text-center row" style="background-color:lightblue">
     <a id="returnBtn" class="btn btn-lg" onClick="window.history.back()">Go Back</a>
   </div>
   <br>
-  <div id="text" class="text-center">
-      <b>Autoren:</b> Vincent Wehr, Federica Faßbender, David Hörmann, Armand Borel Kengne Tene und Yiran Sun <br />
-      <b>Email:</b> platzhalter@email.de <br />
-      <b>Telefon:</b> 030 1234567 <br />
+
+  <div class="about" style="background-color:rgb(255, 255, 255)">
+    <b>Autoren:</b> Vincent Wehr, Federica Faßbender, David Hörmann, Armand Borel Kengne Tene und Yiran Sun <br />
+    <b>Email:</b> platzhalter@email.de <br />
+    <b>Telefon:</b> 030 1234567 <br />
   </div>
+
 {% endblock body %}
 
 {% block css %}
