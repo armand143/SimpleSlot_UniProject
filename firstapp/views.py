@@ -175,12 +175,36 @@ def deleteCluster(request, cluster_id):
 
 
 def deleteReservation(request, reservation_id):
-    reservation = Reservation.objects.get(pk=reservation_id)
-    reservation.delete()
-    """ return redirect('MyReservations') """
-    reservationAll = Reservation.objects.order_by('cluster', 'date')
-    context= {'reservation' : reservationAll}
-    return render(request,'firstapp/myreservations.html', context)
+    res = Users_reservations_dict.objects.get(pk = reservation_id)
+    #before deleting set booked slots back to available
+    for booked_sl in res.not_av_slots: 
+        res.reservation.av_slots.append(booked_sl)
+        res.reservation.save()
+
+    res.delete()
+
+    reserved_objs = Users_reservations_dict.objects.filter(user = res.user)
+    contextt = {'res_objs': reserved_objs,
+                }
+    return render(request, 'firstapp/ReservierteTermine.html', contextt)
+
+
+def deleteSlot(request, reservation_id, slot_value): 
+    res = Users_reservations_dict.objects.get(pk = reservation_id)
+    for sl in res.not_av_slots: 
+        if sl == slot_value:
+            res.reservation.av_slots.append(sl)
+            res.reservation.save()
+
+            res.not_av_slots.remove(sl)
+            res.save()
+
+            reserved_objs = Users_reservations_dict.objects.filter(user = res.user)
+            contextt = {'res_objs': reserved_objs,
+                        }
+            return render(request, 'firstapp/ReservierteTermine.html', contextt)
+
+
 
 
 def impressum(request):
@@ -193,6 +217,14 @@ def remove_dups(list):
         if l not in unique_list:
             unique_list.append(l)
     return unique_list 
+
+
+def sort_time_lists(listt):     #'08:00 -09:00'
+    sort_list = []
+    for sl in listt:
+        sl_value = datetime.strptime(sl[-5:], '%H:%M').time()
+        sort_list.append(sl_value)
+    return sorted(sort_list)
 
 def update_reservations(request):
     all_dicts_list = Users_reservations_dict.objects.all()
@@ -231,7 +263,7 @@ def update_slots(request, slot_value, res_id, user_id):
 
     reservation_objs = Reservation.objects.all()
     contextt = {'res_objs': reservation_objs,
-                'available_slots': choosen_Reservation.av_slots,
+                'available_slots': sorted(choosen_Reservation.av_slots),
                 'res_id': res_id,
 
                 }
@@ -262,7 +294,7 @@ def whole_day(request, res_id, user_id):
         
         reservation_objs = Reservation.objects.all()
         contextt = {'res_objs': reservation_objs,
-                    'available_slots': choosen_Reservation.av_slots,
+                    'available_slots': sorted(choosen_Reservation.av_slots),
                     'booked_slots': choosen_Reservation.not_av_slots,
                     'res_id': res_id,
                     }
@@ -318,7 +350,7 @@ def book(request, cluster_id, user_id):
                     dict.save()
 
                 avail_list = Users_reservations_dict.objects.filter(reservation = res_list[0], user = current_user)[0].reservation.av_slots
-                context = {'available_slots': avail_list,
+                context = {'available_slots': sorted(avail_list),
                         'picked_date': request.POST['date'],
                         'res_id': res_list[0].id,
                         'reservation': res_list[0],
@@ -332,7 +364,7 @@ def book(request, cluster_id, user_id):
 
         reservation_objs = Reservation.objects.all()
         contextt = {'res_objs': reservation_objs,
-                    'available_slots': avail_list,
+                    'available_slots': sorted(avail_list),
                     'picked_date': request.POST['date'],
                     'res_id': newly_created_res.id,
                     'cluster': cluster,
@@ -344,13 +376,14 @@ def book(request, cluster_id, user_id):
 
 
 def ResPage(request, user_id):
-    while True: 
-        #update_reservations(request)
-        n = User.objects.get(pk=user_id)
-        reserved_objs = Users_reservations_dict.objects.filter(user = n)
-        contextt = {'res_objs': reserved_objs,
-                    }
-        return render(request, 'firstapp/ReservierteTermine.html', contextt)
+    n = User.objects.get(pk=user_id)
+    reserved_objs = Users_reservations_dict.objects.filter(user = n)
+    contextt = {'res_objs': reserved_objs,
+                }
+    return render(request, 'firstapp/ReservierteTermine.html', contextt)
+    # while True: 
+    #     #update_reservations(request)
+
 
 
 

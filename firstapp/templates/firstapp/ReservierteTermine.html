@@ -73,7 +73,7 @@
                             <div class="col-sm-12"
                                 style="display: flex; flex-direction: row;justify-content: center;align-items:center;">
                                 {% for sl in dt.not_av_slots %}
-                                <button class="btn btn-warning" href="" role="button">{{sl}}</button> &nbsp
+                                <a class="btn btn-warning" href="{% url 'deleteSlot' dt.id sl %}" role="button">{{sl}}</a> &nbsp
                                 {% endfor %}
                             </div>
                         </div>
@@ -82,6 +82,9 @@
                     <td class="col-lg-1">
                         <a class="btn btn-light" href="{% url 'book' dt.reservation.clusterr.id user.id %}"
                             role="button">change date</a>
+                            <a class="btn btn-danger" href="{% url 'deleteReservation' dt.id %}"
+                            role="button">delete</a>
+
                     </td>
                 </tr>
                 {% endfor %}

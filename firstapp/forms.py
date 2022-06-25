@@ -46,7 +46,7 @@ class DateInput(forms.DateInput):
 class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
-        fields = ['date', 'user']
+        fields = ['date']
         widgets = {
             'cluster_title': forms.TextInput(attrs= {'class': 'form-control'}),
 			'date': DateInput(),

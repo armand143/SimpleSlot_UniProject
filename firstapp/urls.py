@@ -28,5 +28,7 @@ urlpatterns = [
     path('book/<cluster_id>/<int:user_id>', views.book, name='book'),
     path('respage/<int:user_id>', views.ResPage, name='ResPage'),
     path('update_slots/<str:slot_value>/<int:res_id>/<int:user_id>', views.update_slots, name='update_slots'),
-    path('whole_day/<int:res_id>/<int:user_id>', views.whole_day, name='whole_day')
+    path('whole_day/<int:res_id>/<int:user_id>', views.whole_day, name='whole_day'),
+    path('deleteSlot/<int:reservation_id>/<str:slot_value>', views.deleteSlot, name='deleteSlot')
+
 ]
