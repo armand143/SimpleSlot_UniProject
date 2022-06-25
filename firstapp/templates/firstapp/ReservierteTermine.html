@@ -7,7 +7,7 @@
 
 <div class="d-flex justify-content-between ">
     <div>
-      <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
+      <img class="logo" src="{% static 'images/logo.jpg'%}" alt="logo" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
     </div>
     
     <div>
@@ -85,7 +85,7 @@
                     {% endif %}
                     <td class="col-lg-1">
                         <a class="btn btn-light" href="{% url 'book' dt.reservation.clusterr.id user.id %}"
-                            role="button">change date</a>
+                            role="button">book more</a>
                             <a class="btn btn-danger" href="{% url 'deleteReservation' dt.id %}"
                             role="button">delete</a>
 

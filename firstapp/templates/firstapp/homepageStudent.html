@@ -22,9 +22,9 @@
     </div>
   </div>
  -->
-<div class="d-flex justify-content-between ">
+<div class="d-flex justify-content-between" style="background-color: white ;">
   <div>
-    <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
+    <img class="logo" src="{% static 'images/logo.jpg'%}" alt="logo" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
   </div>
   
   <div>
@@ -55,6 +55,7 @@
   {% endfor %}
   <!-- {{message.success}}
   {{message.error}} -->
+
   <div>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm2" name="suche" type="search" placeholder="search for..." aria-lable="Search">
@@ -81,7 +82,7 @@
                 <td class="col-lg-6">{{cl.Beschreibung}}</td>
                 {%if cl.availability == True %}
                   <td class="col-sm-1">
-                    <a class="btn btn-outline-secondary" href="{% url 'book' cl.id user.id%}" role="button">reserve</a>
+                    <a class="btn simplebutton" href="{% url 'book' cl.id user.id%}" role="button">reserve</a>
                   </td>
                   {%else%}
                   <td class="col-sm-1">
