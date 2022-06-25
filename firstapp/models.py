@@ -37,15 +37,33 @@ class UserProfile(models.Model):
 
 
 class Reservation(models.Model):
-    cluster = models.ForeignKey(Cluster, on_delete=models.CASCADE)
-    date = models.DateField()
-    user = models.ForeignKey(User, on_delete= models.CASCADE)
+    clusterr = models.ForeignKey(Cluster, on_delete=models.CASCADE)
+    cluster_title = models.CharField(max_length=100)
+    date = models.CharField(max_length=100)
+    not_av_slots = models.JSONField(null=True)
+    av_slots = models.JSONField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('cluster', 'date')
+        constraints = [
+            models.UniqueConstraint(
+                fields=['clusterr', 'date'], name='unique_reservation')
+        ]
 
     def __str__(self):
         return self.user.username
+
+
+class Users_reservations_dict(models.Model):
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    not_av_slots = models.JSONField(null=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['reservation', 'user'], name='unique_user_reservation')
+        ]
 
 # (changes in database:)
 #python manage.py makemigrations --> python manage.py migrate

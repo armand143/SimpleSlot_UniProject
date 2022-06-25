@@ -14,8 +14,8 @@ urlpatterns = [
     path('', views.loggingin, name='Login'),
     path('logout/', views.loggingout, name='Logout'),
     path('register/', views.register, name='Register'),
-    path('reservation/<cluster_id>/<user_id>', views.reservation, name='bookSlot'),
-    path('myreservations/<user_id>', views.myreservation, name='MyReservations'),
+    # path('reservation/<cluster_id>/<user_id>', views.reservation, name='bookSlot'),
+    # path('myreservations/<user_id>', views.myreservation, name='MyReservations'),
 
     path('change_password/', PasswordChangeView.as_view(
         template_name='firstapp/change_password.html',
@@ -25,4 +25,8 @@ urlpatterns = [
     ), name="password_change_done"),
     path('profile/<user_id>', views.profile, name='profile'),
     path('profile/update/<user_id>', views.profile_update, name='profile_update'),
+    path('book/<cluster_id>/<int:user_id>', views.book, name='book'),
+    path('respage/<int:user_id>', views.ResPage, name='ResPage'),
+    path('update_slots/<str:slot_value>/<int:res_id>/<int:user_id>', views.update_slots, name='update_slots'),
+    path('whole_day/<int:res_id>/<int:user_id>', views.whole_day, name='whole_day')
 ]
