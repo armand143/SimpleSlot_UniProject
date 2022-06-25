@@ -23,14 +23,6 @@ class Cluster(models.Model):
         return self.title
 
 
-# not used yet, using the defaul "User" model from django
-""" class Nutzer(models.Model):
-    matrikelnummer = models.IntegerField(primary_key=True)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=64)
-    def str(self):
-        return '%s'%self.username """
-
 class UserProfile(models.Model):
     matrikelnummer = models.IntegerField(unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
