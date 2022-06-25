@@ -1,11 +1,10 @@
 {% extends 'firstapp/base.html' %}
+{% load static %}
 
 {% block title %}New Ressource{% endblock title %}
 
 {% block body %}
-  <header>
-      <h1><b>New Cluster-Resource</b></h1>
-  </header>
+  <h1 id="sitename"><b>New Cluster-Resource</b></h1>
   <nav>
     <a href="{% url 'Übersicht' %}">Homepage</a>
   </nav>

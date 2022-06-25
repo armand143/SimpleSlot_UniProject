@@ -1,9 +1,22 @@
 {% extends 'firstapp/base.html' %}
-
+{% load static %}
 {% block title %}User Login{% endblock title %}
 
 {% block body %}
-  <h1><b>Login</b></h1>
+    <div class="d-flex flex-row align-items-center">
+      <div>
+        <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
+      </div>
+      <div class="spacer" style="background-color:rgb(255, 255, 255)">
+      </div>
+      <div>
+        <h1 id="loginTitle"><b> SimpleSlot </b></h1>
+      </div>
+
+    </div>
+
+
+  <h2 id="sitename"><b>Login</b></h2>
 
   <div class="text-center">
     <div class="col justify-content-center">
@@ -26,6 +39,7 @@
       </form>
     </div>
   </div>
+
   <hr/>
   <div class="text-center">
     <p>No account yet?</p>
@@ -34,13 +48,19 @@
 {% endblock body %}
 
 {% block css %}
-  <style>
+<style>
+  #loginTitle {
+    color:rgb(0, 194, 194);
+    padding: 30px 100px;
+    font-size: 60px;
+    text-align: center;
+  }
 
-  </style>
+</style>
 {% endblock css %}
 
 {% block javascript %}
-  <script>
-    
-  </script>
+<script>
+  
+</script>
 {% endblock javascript %}

@@ -1,11 +1,11 @@
 {% extends 'firstapp/base.html' %}
+{% load static %}
 
 {% block title %}Reservation{% endblock title %}
 
 {% block body %}
-  <header>
-      <h1><b>Choose Time Slot</b></h1>
-  </header>
+<h1 id="sitename"><b>Choose Time Slot</b></h1>
+
 
   <nav>
     <a href="{% url 'homestudi' %}">Homepage</a>
