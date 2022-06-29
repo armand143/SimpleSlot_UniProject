@@ -60,7 +60,7 @@ def loggingin(request):
 
         if user is not None:
             login(request, user) 
-            if username == 'adminProject':
+            if username == 'admin':
                 return redirect('Übersicht')
             else:
                 return redirect('homestudi')
@@ -105,10 +105,10 @@ def register(request):
             profile.user = user
             profile.save()
             
-            messages.success(request, "Erfolgreich registriert.")
+            messages.success(request, "Registration was successful.")
             return redirect('Login')
         else:
-            messages.error(request, "Registrierung fehlgeschlagen. Bitte erneut versuchen.")
+            messages.error(request, "Registration failed. Please try again.")
     context = {'form': form, 'user_profile_form': user_profile_form, }
     return render(request, 'firstapp/register.html', context)
 
