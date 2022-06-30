@@ -58,7 +58,7 @@
               <td class="col-sm-6">{{cl.Beschreibung}}</td>
               <td class="col-sm-1">{{cl.availability}}</td>
               <td class="col-sm-1">
-                <a class="btn btn-outline-secondary" href="" role="button">calender</a>
+                <a class="btn btn-outline-secondary" href="{%url 'ResPageAdmin' cl.id %}" role="button">calender</a>
               </td>
               <td class="col-sm-3">
                 <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
