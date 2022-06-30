@@ -56,7 +56,7 @@ class ReservationForm(ModelForm):
 class ProfileForm(forms.Form):
 
     email = forms.CharField(label='Email', max_length=50, required=False)
-    matrikelnummer = forms.IntegerField(label='Matrikelnummer', required=False)
+    matrikelnummer = forms.IntegerField(label='Student-ID', required=False)
 
 
 
