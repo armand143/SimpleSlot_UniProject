@@ -5,54 +5,40 @@
 
 {% block body %}
 
-<nav class="navbar justify-content-between" style="background-color: rgb(176, 226, 226);">
-  <a href="{% url 'homestudi' %}">
-  <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
-  </a>
-  <h1><b> Homepage </b></h1>
-  <a href="{% url 'ResPage' user.id %}">My Reservations</a>
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm2" name="suche" type="search" placeholder="search for..." aria-lable="Search">
-    <button class="btn btn-outline-secondary" type="submit">Search</button>
-  </form>
-  <div class="dropstart col-1 align-self-center">
-    <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-      <div class="menuBar1"></div>
-      <div class="menuBar2"></div>
-      <div class="menuBar3"></div>
-    </div>
-    <ul style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
-      <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-      <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My Profil</a>
-      <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+<header class="bg-dark text-white" style="margin-bottom: 50px">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
+      <a class="nav-link" href="{% url 'homestudi' %}">
+        <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
+      </a>
 
-<!-- <div class="d-flex justify-content-between" style="background-color: white ;">
-  <div>
-    <img class="logo" src="{% static 'images/logo.jpg'%}" alt="logo" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
-  </div>
-  
-  <div>
-    <h1 id="sitename"><b> Homepage </b></h1>
-  </div>
-  <div class="dropdown col-1 align-self-center">
-    <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-      <div class="menuBar1"></div>
-      <div class="menuBar2"></div>
-      <div class="menuBar3"></div>
-    </div>
-    <ul style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
-      <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-      <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My Profil</a>
-      <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a></li>
-    </ul>
-  </div>
-</div> -->
+      <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
+        <h1><b> Homepage </b></h1>
+      </div>
 
-  <!-- <h2 id ="sitename" class="col-11"><b>Homepage</b></h2>
- -->
+      <a class="nav-link text-white" href="{% url 'ResPage' user.id %}">My Reservations</a>
+
+
+      <form class="col-12 col-lg-auto  me-lg-3" role="search">
+        <input class="form-control form-control-dark text-white bg-dark" name="suche" type="search" placeholder="search for..." aria-lable="Search">
+      </form>
+
+      <div class="text-end">
+        <div class="dropstart">
+          <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            M
+          </div>
+          <ul style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
+            <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My Profil</a>
+            <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
 
   {% for message in messages %}
     <p>{{message}}</p>

@@ -3,32 +3,26 @@
 {% block title %}User Login{% endblock title %}
 
 {% block body %}
-    <div class="d-flex flex-row align-items-center px-4">
-      <div>
-        <img class="logo" src="{% static 'images/logo-noBG.png'%}" alt="ASDSAD" />
-      </div>
-      <div>
-        <h1 id="headTitle"><b> SimpleSlot </b></h1>
-      </div>
-
-    </div>
-
-
-  <!-- <h2 id="sitename"><b>Login</b></h2> -->
-
-
-
-<div class="row" id="imageLoginBackground" >
+<div class="d-flex flex-row align-items-center px-4">
   <div>
+    <img class="logo noHover" src="{% static 'images/logo-noBG.png'%}" alt="ASDSAD" />
+  </div>
+  <div>
+    <h1 class="noHover" id="headTitle"><b> SimpleSlot </b></h1>
+  </div>
+</div>
+
+  <div class="text-center">
     {% for message in messages %}
     <p>{{message}}</p>
     {% endfor %}
   </div>
+
 <!--credits: https://getbootstrap.com/docs/5.2/examples/heroes/-->
-<div class="container col-xl-8 px-5 py-5">
+<div class="container col-xl-8 px-5 py-5" style="margin-bottom: 50px">
   <div class="row align-items-center px-5 py-5">
     <div class="col-lg-6 text-center text-lg-start">
-      <h1 class="display-4" style="font-family: Georgia">Login</h1>
+      <h1 class="display-4" style="font-family: Georgia"><b>Login</b></h1>
       <p class="col-lg-10 fs-4">
         Log into a new world of the TU and experience real beauty and functionality, today!
       </p>
@@ -48,46 +42,35 @@
           <button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 80px">Login</button>
         </form>
         <div class="text-center mt-2">
-          <p>No account yet?</p>
+          <p><b>No account yet?</b></p>
           <a class="btn btn-secondary round" href="{% url 'Register' %}" role="button">Register</a>  
         </div>
       </div>
-      </div>
     </div>
   </div>
-
-
 </div>
 
-<!-- 
-<div class="max600 center">
-  <div class="text-center">
-    <div class="col justify-content-center">
-      {% for message in messages %}
-        <p>{{message}}</p>
-      {% endfor %}
-      <form action="" method="post">
-        {% csrf_token %}
-        <div class="input-group mb-4">
-          <span class="input-group-text blue w35px"><i class="fa fa-user"></i></span>
-          <input type="text" name="username" class="form-control" placeholder="Username" required />
-        </div>
-        <div class="input-group mb-4">
-          <span class="input-group-text blue w35px"><i class="fa fa-lock"></i></span>
-          <input type="password" name="password" class="form-control" placeholder="Passwort" required />
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 80px">Login</button>
-      </form>
+<!-- new feature project -->
+<div class="container col-xl-8 px-5 py-5">
+  <h2 style="font-family: Georgia">Features</h2>
+</div> 
+<div class="container" id="featured-3">
+  <div class="row row-cols-1 row-cols-md-3 align-items-stretch ">
+    <div class="feature col" style="background-color: rgb(31, 106, 172,0.25)">
+      <h3><b>Student</b></h3>
+      <p>Login and Register. Become a strong member of the united network of the TU!</p>
+    </div>
+    <div class="feature col" style="background-color: rgb(25, 122, 25,0.25)">
+      <h3><b>Prof</b></h3>
+      <p>Overview over all resources, users and reservations.</p>
+    </div>
+    <div class="feature col" style="background-color: rgb(31, 106, 172,0.25)">
+      <h3><b>Student</b></h3>
+      <p>Reserve all resources of the TU for your own research, projects and experiments. </p>
     </div>
   </div>
+</div>
 
-  <hr/>
-  <div class="text-center">
-    <p>No account yet?</p>
-    <a class="btn btn-secondary round" href="{% url 'Register' %}" role="button">Register</a>  
-  </div>
-</div> 
--->
 {% endblock body %}
 
 {% block css %}
@@ -105,8 +88,9 @@
     background-attachment: fixed; 
     /* background-size: auto 100%; */
     background-size:cover;
-    height:80vh;
-    
+  }
+  .feature {
+    padding: 50px 110px 30px!important;
   }
 </style>
 {% endblock css %}

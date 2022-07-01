@@ -23,7 +23,7 @@
 {% endblock body %}
 
 <footer class="footer">
-    <div class="text-center p-4" style="background-color: rgba(22, 21, 21, 0.05);">
+    <div class="text-center p-4">
         <a href="{% url 'Impressum' %}">About</a>
     </div>
 </footer>
@@ -59,8 +59,8 @@
   text-align: center;
 }
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
   margin: 0px, 0px, 0px, 10px;
 }
@@ -125,6 +125,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
+  background-color: rgba(22, 21, 21, 0.15);
 }
 .table-head-button:hover {
   color: rgba(5, 7, 8, 0.438);
@@ -191,6 +192,9 @@ body {
     font-size: 60px;
     text-align: center;
   }
+.noHover {
+  pointer-events: none;
+}
 /* menu end */
 </style>
 <!-- Bootstrap functionality -->
