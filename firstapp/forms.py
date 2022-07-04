@@ -48,7 +48,7 @@ class ReservationForm(ModelForm):
         model = Reservation
         fields = ['date']
         widgets = {
-            # 'cluster_title': forms.TextInput(attrs= {'class': 'form-control'}),
+            'cluster_title': forms.TextInput(attrs= {'class': 'form-control'}),
 			'date': DateInput(),
             
 		}
@@ -56,7 +56,7 @@ class ReservationForm(ModelForm):
 class ProfileForm(forms.Form):
 
     email = forms.CharField(label='Email', max_length=50, required=False)
-    matrikelnummer = forms.IntegerField(label='Matrikelnummer', required=False)
+    matrikelnummer = forms.IntegerField(label='Student-ID', required=False)
 
 
 

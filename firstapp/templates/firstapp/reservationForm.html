@@ -1,16 +1,52 @@
 {% extends 'firstapp/base.html' %}
 {% load static %}
 
-{% block title %}Reservation{% endblock title %}
+{% block title %}Homepage Studi{% endblock title %}
 
 {% block body %}
-<h1 id="sitename"><b>Choose Time Slot</b></h1>
 
+<header class="bg-dark text-white" style="margin-bottom: 50px">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
+      <a class="nav-link" href="{% url 'homestudi' %}">
+        <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
+      </a>
 
-  <nav>
-    <a href="{% url 'homestudi' %}">Homepage</a>
-  </nav>
-  
+      <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
+        <h1><b> Homepage </b></h1>
+      </div>
+      <a class="nav-link text-white" href="{% url 'homestudi' %}">Homepage</a>
+      <a class="nav-link text-white" href="{% url 'ResPage' user.id %}">My Reservations</a>
+
+      <form class="col-12 col-lg-auto  me-lg-3" role="search">
+        <input class="form-control form-control-dark text-white bg-dark" name="suche" type="search" placeholder="search for..." aria-lable="Search">
+      </form>
+
+      <div class="text-end">
+        <div class="dropdown">
+          <div id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="menuBar1" style="background-color:white"></div>
+            <div class="menuBar2" style="background-color:white"></div>
+            <div class="menuBar3" style="background-color:white"></div>
+          </div>
+          <div style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span>
+            <a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My Profil</a>
+            <a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+  {% for message in messages %}
+    <p>{{message}}</p>
+  {% endfor %}
+  <!-- {{message.success}}
+  {{message.error}} -->
+
   <div class="container-fluid w-50">
     <table class="table">
       <thead>
@@ -45,26 +81,19 @@
       <input type="submit" value="reserve" />
     </form> 
   </div>
-{% endblock body %}
+  {% endblock body %}
 
-{% block css %}
-  <style>
-    label {
-      font-size: 18px;
-    }
-    input {
-      display: block;
-      margin : 0px auto 20px;
-      font-size: 18px;
-    }
-    input[disabled] {
-      border: 0;
-    }
-  </style>
-{% endblock css %}
-
-{% block javascript %}
-  <script>
-
-  </script>
-{% endblock javascript %}
+  {% block css %}
+    <style>
+  
+      #logged-in-as {
+        padding: 8px 4px;
+      }    
+    </style>
+  {% endblock css %}
+      
+  {% block javascript %}
+    <script>
+      
+    </script>
+  {% endblock javascript %}
