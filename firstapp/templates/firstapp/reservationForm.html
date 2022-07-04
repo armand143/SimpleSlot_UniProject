@@ -1,15 +1,41 @@
 {% extends 'firstapp/base.html' %}
 {% load static %}
 
-{% block title %}Reservation{% endblock title %}
+{% block title %}Time Slot{% endblock title %}
 
 {% block body %}
-<h1 id="sitename"><b>Choose Time Slot</b></h1>
 
+<header class="bg-dark text-white" style="margin-bottom: 50px">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
+      <a class="nav-link" href="{% url 'homestudi' %}">
+        <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
+      </a>
 
-  <nav>
-    <a href="{% url 'homestudi' %}">Homepage</a>
-  </nav>
+      <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
+        <h1><b> Choose Time Slot </b></h1>
+      </div>
+
+<!--       <a class="nav-link text-white" href="{% url 'homestudi' %}">Homepage</a>
+ -->
+      <div class="text-end">
+        <div class="dropdown">
+          <div id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="menuBar1" style="background-color:white"></div>
+            <div class="menuBar2" style="background-color:white"></div>
+            <div class="menuBar3" style="background-color:white"></div>
+          </div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <span class="dropdown-item-text">logged in: {{request.user}}</span>
+            <a class="dropdown-item" href="{% url 'profile' user.id %}">My Profil</a>
+            <a class="dropdown-item" href="{% url 'Logout' %} ">Logout</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
   
   <div class="container-fluid w-50">
     <table class="table">
@@ -29,7 +55,7 @@
       </tbody>
     </table>  
     <h5><strong>USER:</strong> 
-      <a class="btn btn-info btn-lg" role="button">{{user}}</a>
+      <div class="btn btn-info btn-lg noHover round" >{{user}}</div>
     </h5> 
   </div>
   {{message.error}}

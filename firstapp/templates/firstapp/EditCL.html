@@ -1,14 +1,45 @@
 {% extends 'firstapp/base.html' %}
+{% load static %}
 
 {% block title %}Edit Cluster{% endblock title %}
 
 {% block body %}
-  <h1 id="sitename"><b>Edit Cluster-Ressources</b></h1>
+<header class="bg-dark text-white" style="margin-bottom: 50px">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
+      <a class="nav-link" href="{% url 'Übersicht' %}">
+        <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
+      </a>
 
-  <nav>
-    <a href="{% url 'Übersicht' %}">Homepage</a>
-    <a href="{% url 'New' %}">New Ressource</a>
-  </nav>
+      <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
+        <h1><b> Edit Cluster-Ressources </b></h1>
+      </div>
+
+      <a class="nav-link text-white" href="{% url 'New' %}">New Ressource</a>
+
+
+      <form class="col-12 col-lg-auto  me-lg-3" role="search">
+        <input class="form-control form-control-dark text-white bg-dark" name="suche" type="search" placeholder="search for..." aria-lable="Search">
+      </form>
+
+      <div class="text-end">
+        <div class="dropdown">
+          <div id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="menuBar1" style="background-color:white"></div>
+            <div class="menuBar2" style="background-color:white"></div>
+            <div class="menuBar3" style="background-color:white"></div>
+          </div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <span class="dropdown-item-text">logged in: {{request.user}}</span>
+            <a class="dropdown-item" href="{% url 'profile' user.id %}">My Profil</a>
+            <a class="dropdown-item" href="{% url 'Logout' %} ">Logout</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
 
   <div class="row">
     <div class="w-25 mx-md-auto">
