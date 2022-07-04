@@ -385,6 +385,12 @@ def ResPage(request, user_id):
     #     #update_reservations(request)
 
 
+def ResPageAdmin(request, cluster_id):
+    n = Cluster.objects.get(pk=cluster_id)
+    reserved_objs = Reservation.objects.filter(clusterr = n)
+    contextt = {'reservierte': reserved_objs,
+                }
+    return render(request, 'firstapp/Reservierungsübersicht.html', contextt)
 
 
 
