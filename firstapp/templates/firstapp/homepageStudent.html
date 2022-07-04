@@ -77,8 +77,20 @@
         <tbody>
             {% for cl in cluster %}
               <tr>
-                <td class="col-sm-1">{{cl.tag_system}}</td>
-                <td class="col-sm-2">{{cl.title}}</td>
+                {%if cl.tag_system == 'Art' %}
+                <td class="col-sm-1"> <i class="fa-solid fa-paintbrush fa-3x"></i></td>
+                {%elif cl.tag_system == 'Chemistry' %}
+                <td class="col-sm-1"> <i class="fa-solid fa-flask-vial fa-3x"></i> </td>
+                {%elif cl.tag_system == 'Technical Devices' %}
+                <td class="col-sm-1"> <i class="fa-solid fa-desktop fa-3x"></i> </td>
+                {%elif cl.tag_system == 'Cooking' %}
+                <td class="col-sm-1"> <i class="fa-solid fa-kitchen-set fa-3x"></i> </td>
+                {%elif cl.tag_system == 'Music' %}
+                <td class="col-sm-1"> <i class="fa-solid fa-music fa-3x"></i></td>
+                {%else%}
+                <td class="col-sm-1"> <i class="fa-solid fa-question fa-3x"></i> </td>
+                {% endif %}
+                <td class="col-sm-2"><strong> {{cl.title}} </strong></td>
                 <td class="col-lg-6">{{cl.Beschreibung}}</td>
                 {%if cl.availability == True %}
                   <td class="col-sm-1">

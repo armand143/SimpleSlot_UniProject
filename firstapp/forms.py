@@ -48,7 +48,7 @@ class ReservationForm(ModelForm):
         model = Reservation
         fields = ['date']
         widgets = {
-            'cluster_title': forms.TextInput(attrs= {'class': 'form-control'}),
+            # 'cluster_title': forms.TextInput(attrs= {'class': 'form-control'}),
 			'date': DateInput(),
             
 		}
