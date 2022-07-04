@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock title %}
 
 {% block body %}
-  <h1><b>Register</b></h1>
+  <h1 id="sitename"><b>Register</b></h1>
   <form method="POST" action="">
     <div class="text-center">
       {{form.errors}}
@@ -30,7 +30,16 @@
 
       <p><b>{{form.password2.label}}</b></p>
       <p>{{form.password2}}</p>
-      <p><button type="submit" class="btn btn-primary btn-lg">Registrieren</button></p>
+      
+      <div class="pb-3">
+        <div> <b> {{user_profile_form.email.label}} </b></div>
+        <div>{{user_profile_form.email}}</div>
+
+        <div class="pt-3"> <b> {{user_profile_form.matrikelnummer.label}} </b></div>
+        <div>{{user_profile_form.matrikelnummer}}</div>
+      </div>
+
+      <p><button type="submit" class="btn btn-primary btn-lg" style="padding:10px 40px">Register</button></p>
     </div>
   </form>
 
@@ -62,8 +71,8 @@
       </div>
   </form> -->
   <div class="text-center">
-    <p>Bereits registriert?</p>
-    <a class="btn btn-secondary" href="{% url 'Login' %}" role="button">Anmelden</a>  
+    <p>Already registered?</p>
+    <a class="btn btn-secondary" href="{% url 'Login' %}" role="button">Login</a>  
   </div>
 {% endblock body %}
 

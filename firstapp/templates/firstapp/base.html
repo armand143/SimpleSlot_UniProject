@@ -1,19 +1,7 @@
-<!-- Guide -->
-<!-- create new block in base.html 
-    like: % block inhalte % 
-          % endblock inhalte %                         
--->
-<!-- fill that block in other html
-     % extends 'firstapp/base.html' %
-     % block inhalte %
-     ...content...
-     % endblock inhalte %  
--->
-
 <!-- main code -->
 {% load static %}
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <title>{% block title %}{% endblock title%}</title>
     <meta name="keywords" content="Hausarbeit,Praktikum">
@@ -32,9 +20,9 @@
 {% endblock body %}
 
 <footer class="footer">
-     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-          <a href="{% url 'Impressum' %}">Impressum</a>
-     </div>
+    <div class="text-center p-4" style="background-color: rgba(22, 21, 21, 0.05);">
+        <a href="{% url 'Impressum' %}">About</a>
+    </div>
 </footer>
 
 </body>
@@ -46,11 +34,50 @@
 {% endblock javascript %}
 
 <style>
-h1 {
+
+.spacer {
+  padding: 40px;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  font-size: 30px;
+}
+/* h1 { 
   padding: 20px;
   text-align: center;
-  font-size: 30px;
+  text-decoration-color: aqua;
+  font-size: 40px;
   background-color: rgb(0, 194, 194);
+} */
+#sitename {
+  padding: 30px 100px;
+  color: aliceblue;
+  background-color: rgb(0, 194, 194);
+  font-size: 40px;
+  text-align: center;
+}
+.logo {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin: 0px, 0px, 0px, 10px;
+}
+.logo:hover {
+  border: 1px groove white;
+}
+.simplebutton {
+  background-color: rgb(0, 194, 194);
+}
+.simplebutton:hover {
+  border: 1px groove rgb(75, 75, 75);
+  background-color: rgb(0, 212, 212);
+  color: white;
+
+}
+.about {
+  padding: 40px;
+  text-align: left;
+  font-size: 20px;
+  background-color: rgb(255, 255, 255);
 }
 nav {
   padding: 5px;
@@ -58,8 +85,11 @@ nav {
   text-align: center;
   font-size: 20px;
   width: 100%;
-  background-color: lightgrey;
+  background-color: rgb(0, 194, 194);
   color: black;
+}
+nav a:hover {
+  color: white;
 }
 a {
   color:darkslategrey;
@@ -83,17 +113,22 @@ html {
 }
 body {
   margin-bottom: 100px; 	/* height of the footer must be specified as margin */
+  /*   background-color: rgb(245, 245, 245);
+ */
+
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
 .table-head-button:hover {
-  background: lightblue;
+  color: rgba(5, 7, 8, 0.438);
 }
 .dropdown-item {
-  background-color: rgb(201, 153, 153);
+  background-color: rgb(0, 194, 194);
+  text-align: right;
 }
 /* menu block */
 .menu {
@@ -117,6 +152,13 @@ body {
 .change .menuBar3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
+}
+
+#returnBtn:hover {
+  color:white;
+}
+#text {
+  font-size: 18px;
 }
 /* menu end */
 </style>

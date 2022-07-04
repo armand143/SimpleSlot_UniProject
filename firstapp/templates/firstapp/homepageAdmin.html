@@ -1,50 +1,41 @@
 {% extends 'firstapp/base.html' %}
+{% load static %}
 
 {% block title %}Homepage Admin{% endblock title %}
 
 {% block body %}
-  <h1>
-    <b style="color:aliceblue"> SimpleSlot </b>
-    <nav class="navbar" style="background-color: lightskyblue">
-      <h1><b>Admin Homepage</b></h1>
-      <div>
-        <div class="dropstart">
-          <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false" onclick="transformFunction(this)">
-            <div class="menuBar1"></div>
-            <div class="menuBar2"></div>
-            <div class="menuBar3"></div>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-            <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
-            <li><a class="dropdown-item" href="#" style="text-align: right">Profil</a></li>
-            <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
-          </ul>
-        </div>
+
+  <div class="d-flex justify-content-between ">
+    <div>
+      <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
+    </div>
+    
+    <div>
+      <h1 id="sitename"><b> Admin Homepage </b></h1>
+    </div>
+    <div class="dropstart col-1 align-self-center">
+      <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false" onclick="transformFunction(this)">
+        <div class="menuBar1"></div>
+        <div class="menuBar2"></div>
+        <div class="menuBar3"></div>
       </div>
-    </nav>
-  </h1>
+      <ul style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
+        <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
+        <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: right">My Profil</a>
+        <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
+      </ul>
+    </div>
+  </div>
 
   <nav>
-      <a href="{% url 'Übersicht' %}">Übersicht</a>
-      <a href="{% url 'New' %}">Neue Ressource</a>
-      <a href="{% url 'EditProfil' user.id %}">Mein Profil</a>
-      <!--same as logout button: 
-        <a href="{% url 'Login' %}">Login</a> 
-      -->
+      <a href="{% url 'Übersicht' %}">Homepage</a>
+      <a href="{% url 'New' %}">New Ressource</a>
   </nav>
 
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm2" name="suche" type="search" placeholder="Search for..." aria-lable="Search">
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </form>
-  <h3>Cluster List </h3>
-  
-  <!-- now inside the header:
-  <nav class="navbar">
-    <span>Logged in: {{request.user}}</span>
-    <a href="{% url 'Logout' %}" class="btn btn-info btn-lg">Logout</a>
-  </nav>
-   -->
   
   <div class="container-fluid">
     <div class="table-responsive">
@@ -71,7 +62,7 @@
               </td>
               <td class="col-sm-3">
                 <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
-                <a class="btn close" href="{% url 'delete' cl.id %}" role="button">&#9747</a>
+                <a class="btn close" href="{% url 'deleteCluster' cl.id %}" role="button">&#9747</a>
               </td>
             </tr> 
           {% endfor %}
