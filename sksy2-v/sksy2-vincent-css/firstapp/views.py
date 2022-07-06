@@ -209,16 +209,25 @@ def deleteSlot(request, reservation_id, slot_value):
 
 
 
+
 def impressum(request):
     if request.method == "POST":
+        #Daten
         firstname = request.POST['firstname']
         lastsname = request.POST['lastname']
         email = request.POST['email']
         need = request.POST['need']
+      # send email 
+        send_mail(
+           'Contact us from ' + firstname + lastsname,
+            need,
+            email,
+            ['simpleslot30@gmail.com'],
+
+        )
         return render(request, 'firstapp/Impressum.html', {'firstname' : firstname})
     else: 
         return render(request, 'firstapp/Impressum.html')
-
 
 def remove_dups(list):
     unique_list = []
