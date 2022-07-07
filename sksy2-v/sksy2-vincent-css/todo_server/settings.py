@@ -125,10 +125,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#Email verschicken fehvckoekgryictd
 
-EMAIL_HOST = 'smtp.gmail.com' 
-EMAIL_USE_TLS = True
+#Email verschicken hhjvryvxbuuklhyz
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'simpleslot101@gmail.com'
+EMAIL_HOST_PASSWORD = 'ftwuznfxfjhzavdt'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'simpleslot30@gmail.com'
-EMAIL_HOST_PASSWORD = 'sczgqsqyuixaeimo'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
