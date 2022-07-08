@@ -327,6 +327,7 @@ def whole_day(request, res_id, user_id):
                     'booked_slots': choosen_Reservation.not_av_slots,
                     'res_id': res_id,
                     }
+        messages.success(request, "Successfully registered the whole day.")
         return render(request, 'firstapp/slot_booking.html', contextt)
 
 

@@ -11,18 +11,28 @@
    | <a href="{% url 'Logout' %}">Logout</a>
 </nav>
 
-<div class="text-center">
+<div class="p-3 py-5">
    <div class="col justify-content-center">
-      <div><h3>Update Profile</h3></div>
+      <div><h3>{{ user.username }}s profile</h3></div>
       <br>
-      
-      <div><ul><li>Username: {{user.username}} </li></ul></div>
       
       <div class="form-wrapper">
          <form method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
-            {{user_form.as_p}}
-            {{user_profile_form.as_p}}
+            <div class="row mt-3">
+               <div class="row mt-2">
+                  <div class="col-md-3"><label class="labels"> First Name</label> {{user_form.first_name}} </div>
+                  <div class="col-md-3"><label class="labels"> Last Name </label> {{user_form.last_name}} </div>
+               </div>
+            <div class="spacer"> </div>
+               <div class="row mt-2">
+                  <div class="col-md-3"><label class="labels">Phone Nr.</label>  </div>
+                  <div class="col-md-3"><label class="labels">Student ID</label> {{user_profile_form.matrikelnummer}} </div>
+               </div>
+            <div class="spacer"> </div>
+               <div class="col-md-3"><label class="labels">Email Adress</label> {{user_profile_form.email}} </div>
+            </div>
+
             {% comment %} {% for field in form %}
             <div class="fieldWrapper">
                {{ field.errors }}
@@ -33,14 +43,16 @@
             </div>
             {% endfor %} {% endcomment %}
 
-
+            <div class="spacer"> </div>
+            <div class="spacer"> </div>
             <div class="button-wrapper submit">
-               <input class="btn btn-primary btn-lg" type="submit" value="Update" />
+               <input class="btn btn-primary btn-lg" type="submit" value="Save" />
             </div>
          </form>
       </div>
    </div>
 </div>
+
 
 {% endblock body %}
 

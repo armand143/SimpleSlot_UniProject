@@ -1,7 +1,7 @@
 {% extends 'firstapp/base.html' %}
 {% load static %}
 
-{% block title %}Homepage Studi{% endblock title %}
+{% block title %}Time Slot{% endblock title %}
 
 {% block body %}
 
@@ -13,15 +13,11 @@
       </a>
 
       <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
-        <h1><b> Homepage </b></h1>
+        <h1><b> Choose Time Slot </b></h1>
       </div>
-      <a class="nav-link text-white" href="{% url 'homestudi' %}">Homepage</a>
-      <a class="nav-link text-white" href="{% url 'ResPage' user.id %}">My Reservations</a>
 
-      <form class="col-12 col-lg-auto  me-lg-3" role="search">
-        <input class="form-control form-control-dark text-white bg-dark" name="suche" type="search" placeholder="search for..." aria-lable="Search">
-      </form>
-
+<!--       <a class="nav-link text-white" href="{% url 'homestudi' %}">Homepage</a>
+ -->
       <div class="text-end">
         <div class="dropdown">
           <div id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,10 +25,10 @@
             <div class="menuBar2" style="background-color:white"></div>
             <div class="menuBar3" style="background-color:white"></div>
           </div>
-          <div style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
-            <span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span>
-            <a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My Profil</a>
-            <a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <span class="dropdown-item-text">logged in: {{request.user}}</span>
+            <a class="dropdown-item" href="{% url 'profile' user.id %}">My Profil</a>
+            <a class="dropdown-item" href="{% url 'Logout' %} ">Logout</a>
           </div>
         </div>
 
@@ -40,13 +36,7 @@
     </div>
   </div>
 </header>
-
-  {% for message in messages %}
-    <p>{{message}}</p>
-  {% endfor %}
-  <!-- {{message.success}}
-  {{message.error}} -->
-
+  
   <div class="container-fluid w-50">
     <table class="table">
       <thead>
@@ -65,7 +55,7 @@
       </tbody>
     </table>  
     <h5><strong>USER:</strong> 
-      <a class="btn btn-info btn-lg" role="button">{{user}}</a>
+      <div class="btn btn-info btn-lg noHover round" >{{user}}</div>
     </h5> 
   </div>
   {{message.error}}
