@@ -24,7 +24,7 @@
 
 <footer class="footer">
     <div class="text-center p-4">
-        <a href="{% url 'Impressum' %}">About</a>
+        <a href="{% url 'Impressum' %}"><b>About</b></a>
     </div>
 </footer>
 
@@ -67,13 +67,6 @@
   border: 1px groove rgb(75, 75, 75);
   background-color: rgb(0, 212, 212);
   color: white;
-
-}
-.about {
-  padding: 40px;
-  text-align: left;
-  font-size: 20px;
-  background-color: rgb(255, 255, 255);
 }
 nav {
   padding: 5px;
@@ -108,14 +101,17 @@ html {
   min-height: 100%; /* set min-height to help positioning the footer */
 }
 body {
-  margin-bottom: 100px; 	/* height of the footer must be specified as margin */
+  margin-bottom: 72px; 	/* height of the footer must be specified as margin */
   /*   background-color: rgb(245, 245, 245);*/
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(22, 21, 21, 0.15);
+  background-color: rgba(22, 21, 21, 0.3);
+}
+.footer a:hover {
+  color: white;
 }
 .table-head-button:hover {
   color: rgba(5, 7, 8, 0.438);
