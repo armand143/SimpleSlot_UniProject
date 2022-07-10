@@ -4,20 +4,23 @@
 {% block title %}About{% endblock title %}
 
 {% block body %}
+<header class="bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
+      <a class="nav-link" href="{% url 'homestudi' %}">
+        <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
+      </a>
 
-  <div class="d-flex flex-row align-items-center">
-    <div>
-      <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
-    </div>
-    <div class="spacer" style="background-color:rgb(255, 255, 255)">
-    </div>
-    <div>
-      <h1 id="loginTitle"><b> SimpleSlot </b></h1>
-    </div>
+      <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
+        <h1><b> SimpleSlot </b></h1>
+      </div>
 
+      <a class="nav-link text-white" href="{% url 'ResPage' user.id %}">My Reservations</a>
+
+
+    </div>
   </div>
-
-  </div>
+</header>
   
   <div class="about" style="background-color:rgb(255, 255, 255)">
     <b>Autoren:</b> Vincent Wehr, Federica Faßbender, David Hörmann, Armand Borel Kengne Tene und Yiran Sun <br />
@@ -94,7 +97,7 @@
                     </div>
 
 
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     
                     <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
                         " style="font-family: Georgia" value="Send Message" >
@@ -129,9 +132,6 @@
     font-family: 'Lato', sans-serif;
 }
 
-h1 {
-    margin-bottom: 40px;
-}
 
 label {
     color: #333;
