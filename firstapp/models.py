@@ -27,6 +27,7 @@ class UserProfile(models.Model):
     matrikelnummer = models.IntegerField(unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     email = models.EmailField(max_length=128, blank=True, null=True)
+    """ tel = models.CharField(max_length=20, null=True) """
     mod_date = models.DateTimeField(auto_now=True)
 
     class Meta:

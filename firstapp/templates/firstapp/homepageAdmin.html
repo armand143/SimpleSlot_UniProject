@@ -31,7 +31,7 @@
           </div>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu">
             <span class="dropdown-item-text">logged in: {{request.user}}</span>
-            <a class="dropdown-item" href="{% url 'profile' user.id %}">My Profil</a>
+            <a class="dropdown-item" href="{% url 'profile_update' user.id %}">My Profil</a>
             <a class="dropdown-item" href="{% url 'Logout' %} ">Logout</a>
           </div>
         </div>
