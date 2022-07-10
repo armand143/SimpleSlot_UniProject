@@ -12,64 +12,65 @@
   </div>
 </div>
 
-<div class="container col-xl-8 px-5 py-5">
+<div class="container col-xl-8 ">
   <div class="row align-items-center px-5 py-5">
-    <div class="col-lg-6 text-center text-lg-start">
+    <div class="col-0 col-lg-1">&nbsp;</div>
+    <div class="col-lg-4 text-center text-lg-start">
       <h1 class="display-4" style="font-family: Georgia"><b>Register</b></h1>
     </div>
-  <div class="col-lg-6 mx-auto col-lg-6">
-    <div class="text-center">
-      <form method="POST" action="">
-          {% csrf_token %}
-          <p><b>{{form.username.label}}</b></p>
-          <div class="input-group mb-4">
-            <span class="input-group-text btn blueBlack noHover"><i class="fa fa-user"></i></span>
-            {{form.username}}
-            <span class="input-group-text btn blue" title="    * Max 150 characters. Letters, digits and @ . + - _ only."><i class="fa fa-info"></i></span>
-          </div>
+    <div class="col-12 col-lg-6 ">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <p class="h4">Username</p>
+            <div class="input-group mb-4">
+              <span class="input-group-text btn blueBlack noHover w35px"><i class="fa fa-user"></i></span>
+              {{form.username}}
+              <span class="input-group-text btn blue" title="    * Max 150 characters. Letters, digits and @ . + - _ only.  "><i class="fa fa-info"></i></span>
+            </div>
 
-          <p><b>{{form.password1.label}}</b></p>
-          <div class="input-group mb-4">
-            <span class="input-group-text btn blueBlack noHover"><i class="fa fa-lock"></i></span>
-            {{form.password1}}
-            <span class="btn blue" title="      * Your password can't be too similar to your other personal information.
-          * Your password must contain at least 8 characters.
-          * Your password can't be a commonly used password.
-          * Your password can't be entirely numeric."><i class="fa fa-info"></i></span>
-          </div>
-    
-          <p><b>{{form.password2.label}}</b></p>
-          <div class="input-group mb-4">
-            <span class="input-group-text btn blueBlack noHover"><i class="fa fa-lock"></i></span>
-            {{form.password2}}
-            <span class="btn blue" title="    * Enter the same password again."><i class="fa fa-info"></i></span>
-          </div>
+            <p class="h4">Password</p>
+            <div class="input-group mb-4">
+              <span class="input-group-text btn blueBlack noHover w35px"><i class="fa fa-lock"></i></span>
+              {{form.password1}}
+              <span class="btn blue" title="    * Your password can't be too similar to your other personal information.
+    * Your password must contain at least 8 characters.
+    * Your password can't be a commonly used password.
+    * Your password can't be entirely numeric.  "><i class="fa fa-info"></i></span>
+            </div>
+      
+            <p class="h4">Password Confirmation</p>
+            <div class="input-group mb-4">
+              <span class="input-group-text btn blueBlack noHover w35px"><i class="fa fa-lock"></i></span>
+              {{form.password2}}
+              <span class="btn blue" title="    * Enter the same password again.  "><i class="fa fa-info"></i></span>
+            </div>
 
-          
-          <p><b>{{user_profile_form.email.label}}</b></p>
-          <div class="input-group mb-4">
-            <span class="input-group-text btn blueBlack noHover"> &#xF32F</span>
-            {{user_profile_form.email}}
-            <span class="btn blue" title="    * Can be empty."><i class="fa fa-info"></i></span>
-          </div>
+            
+            <p class="h4">Email</p>
+            <div class="input-group mb-4">
+              <span class="input-group-text btn blueBlack noHover"><b>M</b></span>
+              {{user_profile_form.email}}
+              <span class="btn blue" title="    * Can be empty.  "><i class="fa fa-info"></i></span>
+            </div>
 
-          <p><b>{{user_profile_form.matrikelnummer.label}}</b></p>
-          <div class="input-group mb-4">
-            <span class="input-group-text btn blueBlack noHover"><b>ID</b></span>
-            {{user_profile_form.matrikelnummer}}
-            <span class="btn blue" title="    * Must be unique, like your real TU-Number."><i class="fa fa-info"></i></span>
-          </div>
+            <p class="h4">Matrikelnummer</p>
+            <div class="input-group mb-4">
+              <span class="input-group-text btn blueBlack noHover"><b>ID</b></span>
+              {{user_profile_form.matrikelnummer}}
+              <span class="btn blue" title="    * Must be unique, like your real TU-Number.  "><i class="fa fa-info"></i></span>
+            </div>
 
-          <p></p> 
-          <p><button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 40px">Register</button></p>
-      </form>
-      <div class="text-center">
-        <p><b>Already registered?</b></p>
-        <a class="btn btn-secondary round" href="{% url 'Login' %}" role="button">Login</a>  
-      </div>
+            <p></p> 
+            <p><button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 40px">Register</button></p>
+        </form>
     </div>
-    </div>
+    <div class="col-0 col-lg-1">&nbsp;</div>
   </div>
+
+</div>
+<div class="text-center">
+  <p><b>Already registered?</b></p>
+  <a class="btn btn-secondary round" href="{% url 'Login' %}" role="button">Login</a>  
 </div>
 
   <div class="text-center">

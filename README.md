@@ -18,6 +18,9 @@ Der Grundlegende Aufbau der html-Seiten fußt auf dem Ergebnis der Hausaufgabe 1
 * Django https://www.djangoproject.com/: Version 4.0.4
 * Pip https://pypi.org/project/pip/: Version 22.0.4
 
+Required Packages:
+fontawesomefree: pip install fontawesomefree
+
 ## 3.Startanleitung
 ***
 - Terminal öffnen
