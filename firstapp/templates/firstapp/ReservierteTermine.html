@@ -33,7 +33,7 @@
             </div>
             <div style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
                 <span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span>
-                <a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My Profil</a>
+                <a class="dropdown-item" href="{% url 'profile_update' user.id %}" style="text-align: left">My Profil</a>
                 <a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a>
             </div>
             </div>
