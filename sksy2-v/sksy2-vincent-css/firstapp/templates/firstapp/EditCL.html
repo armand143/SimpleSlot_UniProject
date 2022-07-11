@@ -1,0 +1,35 @@
+{% extends 'firstapp/base.html' %}
+
+{% block title %}Edit Cluster{% endblock title %}
+
+{% block body %}
+  <h1 id="sitename"><b>Edit Cluster-Ressources</b></h1>
+
+  <nav>
+    <a href="{% url 'Übersicht' %}">Homepage</a>
+    <a href="{% url 'New' %}">New Ressource</a>
+  </nav>
+
+  <div class="row">
+    <div class="w-25 mx-md-auto">
+      <form action ="" method=POST>
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type = "submit" id="addToMain" class="btn btn-primary">
+      </form> 
+    </div>
+  </div>
+{% endblock body %}
+
+{% block css %}
+  <style>
+
+  </style>
+{% endblock css %}
+
+{% block javascript %}
+  <script>
+
+  </script>
+{% endblock javascript %}
+
