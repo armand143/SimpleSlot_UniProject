@@ -8,7 +8,7 @@
 <header class="bg-dark text-white" style="margin-bottom: 50px">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
-            <a class="nav-link" href="{% url 'homestudi' %}">
+            <a class="nav-link" href="{% url 'Übersicht' %}">
                 <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
             </a>
 
@@ -17,7 +17,6 @@
             </div>
 
             <a class="nav-link text-white" href="{% url 'AdminResControl' %}">Manage Reservations</a>
-            <a class="nav-link text-white" href="{% url 'Übersicht' %}">Homepage</a>
             <a class="nav-link text-white" href="{% url 'New' %}">New Ressource</a>
 
 
@@ -53,15 +52,16 @@
 <!-- {{message.success}}
   {{message.error}} -->
 
-    <div class="container-fluid " style="max-width: 1200px"></div>
+    <div class="container-fluid " style="max-width: 1800px">
         {% for us in users_list %}
-                    <table class="table table-hover">
+                    <table class="table table-hover ">
                         <thead>
                             <tr>
                                 <th> <a class="btn btn-info btn-lg" role="button">{{us}}</a> </th>
+                                <th scope="col"> Tag </th>
                                 <th scope="col"> reserved </th>
                                 <th class="table-primary" scope="col">Date</th>
-                                <th scope="col">timeslots</th>
+                                <th style = "width: 50%" scope="col">timeslots</th>
                                 <th scope="col">actions</th>
                             </tr>
                         </thead>
@@ -69,8 +69,21 @@
                             {%for res in res_dicts %}
                             {% if us == res.user %}
                             <tr>
-                                <th></th>
-                                <th>{{res.reservation.clusterr.title}}</th>
+                                <td></td>
+                                {%if res.reservation.clusterr.tag_system == 'Art' %}
+                                <td class="col-sm-1"> <i class="fa-solid fa-paintbrush fa-3x"></i></td>
+                                {%elif res.reservation.clusterr.tag_system == 'Chemistry' %}
+                                <td class="col-sm-1"> <i class="fa-solid fa-flask-vial fa-3x"></i> </td>
+                                {%elif res.reservation.clusterr.tag_system == 'Technical Devices' %}
+                                <td class="col-sm-1"> <i class="fa-solid fa-desktop fa-3x"></i> </td>
+                                {%elif res.reservation.clusterr.tag_system == 'Cooking' %}
+                                <td class="col-sm-1"> <i class="fa-solid fa-kitchen-set fa-3x"></i> </td>
+                                {%elif res.reservation.clusterr.tag_system == 'Music' %}
+                                <td class="col-sm-1"> <i class="fa-solid fa-music fa-3x"></i></td>
+                                {%else%}
+                                <td class="col-sm-1"> <i class="fa-solid fa-question fa-3x"></i> </td>
+                                {% endif %}
+                                <td>{{res.reservation.clusterr.title}}</td>
                                 <td class="table-primary">{{res.reservation.date}}</td>
                                 {% if res.not_av_slots|length == 7 %}
                                 <td>
