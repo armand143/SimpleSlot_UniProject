@@ -120,6 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+#Email verschicken hhjvryvxbuuklhyz
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'simpleslot30@gmail.com'
+EMAIL_HOST_PASSWORD = 'hhjvryvxbuuklhyz'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+#DEFAULT_FROM_EMAIL ='simple.slot@yahoo.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
