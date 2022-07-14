@@ -84,7 +84,7 @@
                     <td class="col-sm-1"> <i class="fa-solid fa-question fa-3x"></i> </td>
                     {% endif %}
                     <td class="col-lg-3">{{dt.reservation.clusterr.title}}</td>
-                    <td class="col-lg-3">{{dt.reservation.date}}</td>
+                    <td class="col-lg-2">{{dt.reservation.date}}</td>
                     <td class="col-lg-3">{{dt.reservation.clusterr.Beschreibung}}</td>
                     {% if dt.not_av_slots|length == 7 %}
                     <td>
@@ -107,7 +107,7 @@
                         </div>
                     </td>
                     {% endif %}
-                    <td class="col-lg-1">
+                    <td class="col-lg-3">
                         <a class="btn btn-light" href="{% url 'book' dt.reservation.clusterr.id user.id %}"
                             role="button">book more</a>
                             <a class="btn btn-danger" href="{% url 'deleteReservation' dt.id %}"

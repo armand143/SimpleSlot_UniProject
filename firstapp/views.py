@@ -25,6 +25,8 @@ import json
 from django.forms.models import model_to_dict
 from .forms import *
 from datetime import datetime
+from django.core.mail import send_mail
+
 
 
 def profile(request, user_id):
@@ -231,7 +233,34 @@ def deleteSlot(request, reservation_id, slot_value):
 
 
 def impressum(request):
-    return render(request, 'firstapp/Impressum.html')
+
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        need = request.POST.get('need')
+        message = request.POST.get('message')
+
+        data = {
+            'name': f'{first_name} {last_name}',
+            'email': email,
+            'need': need,
+            'message': message,
+        }
+
+        message = '''
+        Neue Nachricht: {}
+        von: {}
+        Thema: {}
+
+        {}
+
+        '''.format(data['name'], data['email'], data['need'], data['message'])
+
+        send_mail(need, message, '', ['simpleslot101@gmail.com'],fail_silently=False)
+        return render(request, 'firstapp/Impressum.html', {'first_name' : first_name})
+    else:
+         return render(request, 'firstapp/Impressum.html')
 
 
 def remove_dups(list):

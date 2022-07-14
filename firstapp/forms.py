@@ -70,3 +70,10 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['email', 'matrikelnummer']
+
+class ContactForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    need = forms.ChoiceField()
+    message = forms.TextInput()
