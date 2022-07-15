@@ -28,6 +28,16 @@ from datetime import datetime
 from django.core.mail import send_mail
 
 
+def UserListe (request):
+    if 'suche' in request.GET:
+        suche = request.GET['suche']
+        sortieren = Q( Q( matrikelnummer__icontains=suche) | Q( email__icontains=suche))
+        user = UserProfile.objects.filter(sortieren)
+    else:
+        user = UserProfile.objects.all()
+    context = {'user' : user}
+    return render(request ,'firstapp/UserListe.html', context)
+
 
 def profile(request, user_id):
 
