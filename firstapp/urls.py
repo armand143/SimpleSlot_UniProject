@@ -4,6 +4,7 @@ from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 from . import views
 urlpatterns = [
+    path('userliste/' , views.UserListe , name='UserListe'),
     path('homepage/', views.homepage, name='Übersicht'),
     path('impressum/', views.impressum, name='Impressum'),
     path('new/', views.new, name='New'),
