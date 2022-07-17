@@ -1,7 +1,7 @@
 {% extends 'firstapp/base.html' %}
 {% load static %}
 
-{% block title %}Homepage Studi{% endblock title %}
+{% block title %}Admin Control{% endblock title %}
 
 {% block body %}
 
@@ -107,7 +107,7 @@
                                 </td>
                                 {% endif %}
                                 <td class="col-sm-3">
-                                    <a class="btn btn-light" role="button">manage</a>
+                                    <!-- <a class="btn btn-light" role="button">manage</a> -->
                                     <a class="btn btn-danger" href="{% url 'deleteResAdmin' res.id %}" role="button">delete</a>
                                 </td>
                             </tr>

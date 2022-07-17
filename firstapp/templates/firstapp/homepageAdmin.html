@@ -59,7 +59,7 @@
           <th><a class="table-head-button" href="?order_by=title">Title</a></th>
           <th><a class="table-head-button" href="?order_by=Beschreibung">Description</a></th>
           <th><a class="table-head-button" href="?order_by=availability">Availability</a></th>
-          <th>Reservation</th>
+          <!-- <th>Reservation</th> -->
           <th>Actions</th>
         </tr>
       </thead>
@@ -82,9 +82,9 @@
           <td class="col-sm-2"><strong> {{cl.title}} </strong></td>
           <td class="col-sm-6">{{cl.Beschreibung}}</td>
           <td class="col-sm-1">{{cl.availability}}</td>
-          <td class="col-sm-1">
+          <!-- <td class="col-sm-1">
             <a class="btn btn-outline-secondary" href="" role="button">calender</a>
-          </td>
+          </td> -->
           <td class="col-sm-3">
             <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
             <a class="btn close" href="{% url 'deleteCluster' cl.id %}" role="button">&#9747</a>

@@ -58,7 +58,7 @@ def profile_update(request, user_id):
             user_profile_form.user = user_form
             user_profile_form.save()
 
-            return HttpResponseRedirect(reverse('profile', args=[user_id]))
+            return HttpResponseRedirect(reverse('profile_update', args=[user_id]))
     else:
         user_form = UserForm(instance=request.user)
         user_profile_form = UserProfileForm(instance=request.user.profile)
