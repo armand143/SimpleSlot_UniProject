@@ -8,7 +8,7 @@
 <header class="bg-dark text-white" style="margin-bottom: 50px">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
-        <a class="nav-link" href="{% url 'homestudi' %}">
+        <a class="nav-link" onClick="window.history.back()">
           <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
         </a>
   
@@ -16,7 +16,9 @@
           <h1><b> SimpleSlot </b></h1>
         </div>
         
-        <a class="nav-link text-white" href="{% url 'ResPage' user.id %}">My Reservations</a>
+        <div class="text-center row" >
+            <a class="btn" style="color:white" onClick="window.history.back()">Go Back</a>
+        </div>
 
       </div>
     </div>
