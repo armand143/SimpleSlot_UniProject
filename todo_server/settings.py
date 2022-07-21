@@ -79,13 +79,13 @@ WSGI_APPLICATION = 'todo_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        #'Name': os.path.join(BASE_DIR, 'db.sqlite3'), 
-        # 'OPTIONS': {
-        #    'timeout': 10, #seconds, should be around 5-20
-        #}
-
+      
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sksydatabase',
+        'USER': 'postgres',
+        'PASSWORD': 'sksypassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
