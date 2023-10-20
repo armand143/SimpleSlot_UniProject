@@ -80,8 +80,12 @@ SECRET_KEY = 'django-insecure-bd&q5zh7b*5gpn)_k&=%)!gejs+ccm#6p4bf-=w_3i=q43t^6e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://simpleslotuniproject-production.up.railway.app/']
 #ALLOWED_HOSTS = ['localhost,simple-357011.ew.r.appspot.com'] 
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://simpleslotuniproject-production.up.railway.app/",
+]
 
 
 
@@ -134,18 +138,6 @@ WSGI_APPLICATION = 'todo_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-""" old-version """
-# DATABASES = {
-#      'default': {
-      
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'sksy2',
-#         'USER': 'postgres',
-#         'PASSWORD': '1200000qQ',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-#  } 
 
 
 DATABASES = {
