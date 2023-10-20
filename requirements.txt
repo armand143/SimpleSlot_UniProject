@@ -105,3 +105,4 @@ urllib3==1.26.12
 varint==1.0.2
 wcwidth==0.2.5
 web3==5.30
+dj_database_url==0.5.0
