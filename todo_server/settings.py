@@ -38,6 +38,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['simpleslotuniproject-production.up.railway.app']
 #ALLOWED_HOSTS = ['localhost,simple-357011.ew.r.appspot.com'] 
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://simpleslotuniproject-production.up.railway.app",
+]
 
 # Application definition
 
