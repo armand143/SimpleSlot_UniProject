@@ -16,7 +16,7 @@ import os
 from urllib.parse import urlparse
 
 import environ
-from google.cloud import secretmanager
+# from google.cloud import secretmanager
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,7 +79,7 @@ SECRET_KEY = 'django-insecure-bd&q5zh7b*5gpn)_k&=%)!gejs+ccm#6p4bf-=w_3i=q43t^6e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = ['localhost,simple-357011.ew.r.appspot.com'] 
 
 
@@ -138,9 +138,9 @@ DATABASES = {
      'default': {
       
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'simpledatabase',
+        'NAME': 'sksy2',
         'USER': 'postgres',
-        'PASSWORD': 'sksypassword',
+        'PASSWORD': '1200000qQ',
         'HOST': 'localhost',
         'PORT': '5432',
     }
