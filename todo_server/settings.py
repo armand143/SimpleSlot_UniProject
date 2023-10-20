@@ -80,7 +80,7 @@ SECRET_KEY = 'django-insecure-bd&q5zh7b*5gpn)_k&=%)!gejs+ccm#6p4bf-=w_3i=q43t^6e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://simpleslotuniproject-production.up.railway.app/']
+ALLOWED_HOSTS = ['simpleslotuniproject-production.up.railway.app/']
 #ALLOWED_HOSTS = ['localhost,simple-357011.ew.r.appspot.com'] 
 
 CSRF_TRUSTED_ORIGINS = [
