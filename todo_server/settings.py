@@ -14,6 +14,7 @@ from pathlib import Path
 import io
 import os
 from urllib.parse import urlparse
+import dj_database_url
 
 import environ
 # from google.cloud import secretmanager
@@ -134,17 +135,23 @@ WSGI_APPLICATION = 'todo_server.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 """ old-version """
-DATABASES = {
-     'default': {
+# DATABASES = {
+#      'default': {
       
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sksy2',
-        'USER': 'postgres',
-        'PASSWORD': '1200000qQ',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
- } 
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sksy2',
+#         'USER': 'postgres',
+#         'PASSWORD': '1200000qQ',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+#  } 
+
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
+
 
 """ new-gcloud-version
 # Use django-environ to parse the connection string
